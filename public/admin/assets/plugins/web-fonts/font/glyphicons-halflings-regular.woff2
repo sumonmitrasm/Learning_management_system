@@ -1,0 +1,211 @@
+1411-0.7069702C18.8740234,4.7283325,18.5574951,4.7315674,18.3642578,4.9287109z M18.3642578,17.6572876c-0.194397-0.1905518-0.5055542-0.1905518-0.6999512,0c-0.1971436,0.1932983-0.2003174,0.5098267-0.007019,0.7069702l0.7069702,0.7070312c0.0936279,0.0939331,0.2208252,0.1466675,0.3534546,0.1464844c0.1325684,0,0.2597046-0.0526733,0.3534546-0.1463623c0.1953125-0.1952515,0.1953125-0.5118408,0.0001221-0.7071533L18.3642578,17.6572876z"/></svg>
+										</span>
+										<span class="light-layout">
+											<svg class="header-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M22.0482178,13.2746582c-0.1265259-0.2453003-0.4279175-0.3416138-0.6732178-0.2150879C20.1774902,13.6793823,18.8483887,14.0019531,17.5,14c-0.8480835-0.0005493-1.6913452-0.1279297-2.50177-0.3779297c-4.4887085-1.3847046-7.0050049-6.1460571-5.6203003-10.6347656c0.0320435-0.1033325,0.0296021-0.2142944-0.0068359-0.3161621C9.2781372,2.411377,8.9921875,2.2761841,8.7324219,2.3691406C4.6903076,3.800293,1.9915771,7.626709,2,11.9146729C2.0109863,17.4956055,6.5440674,22.0109863,12.125,22c4.9342651,0.0131226,9.1534424-3.5461426,9.9716797-8.4121094C22.1149292,13.4810181,22.0979614,13.3710327,22.0482178,13.2746582z M16.0877075,20.0958252c-4.5321045,2.1853027-9.9776611,0.2828979-12.1630249-4.2492065S3.6417236,5.8689575,8.1738281,3.6835938C8.0586548,4.2776489,8.0004272,4.8814087,8,5.4865723C7.9962769,10.7369385,12.2495728,14.9962769,17.5,15c1.1619263,0.0023193,2.3140869-0.2119751,3.3974609-0.6318359C20.1879272,16.8778076,18.4368896,18.9630127,16.0877075,20.0958252z"/></svg>
+										</span>
+									</a>
+								</div><!-- Theme-Layout -->
+								<div class="dropdown d-flex main-header-fullscreen">
+									<a class="nav-link icon full-screen-link" href="javascript:;">
+										<svg class="header-icons fullscreen-button fullscreen" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M10.1464844,13.1464844L3,20.2929688V16.5C3,16.223877,2.776123,16,2.5,16S2,16.223877,2,16.5v5.0005493C2.0001831,21.7765503,2.223999,22.0001831,2.5,22h5C7.776123,22,8,21.776123,8,21.5S7.776123,21,7.5,21H3.7069092l7.1465454-7.1465454c0.1871338-0.1937256,0.1871338-0.5009155,0-0.6947021C10.6616211,12.960144,10.3450928,12.9546509,10.1464844,13.1464844z M3.7068481,3H7.5C7.776123,3,8,2.776123,8,2.5S7.776123,2,7.5,2H2.4993896C2.2234497,2.0001831,1.9998169,2.223999,2,2.5v5.0006104C2.0001831,7.7765503,2.223999,8.0001831,2.5,8h0.0006104C2.7765503,7.9998169,3.0001831,7.776001,3,7.5V3.7071533l7.1524658,7.1524658c0.1937866,0.1871948,0.5009766,0.1871948,0.6947632,0c0.1986084-0.1918335,0.2041016-0.5083618,0.0122681-0.7069702L3.7068481,3z M21.5,2h-5C16.223877,2,16,2.223877,16,2.5S16.223877,3,16.5,3h3.7930908l-7.1526489,7.1526489c-0.1871948,0.1937256-0.1871948,0.5009766,0,0.6947021c0.1918335,0.1986084,0.5083618,0.2041016,0.7069702,0.0122681L21,3.7070312v3.7935791C21.0001831,7.7765503,21.223999,8.0001831,21.5,8h0.0006104C21.7765503,7.9998169,22.0001831,7.776001,22,7.5V2.4993896C21.9998169,2.2234497,21.776001,1.9998169,21.5,2z M21.5,16c-0.276123,0-0.5,0.223877-0.5,0.5v3.7930908l-7.1465454-7.1465454c-0.1937256-0.1871338-0.5009155-0.1871338-0.6947021,0c-0.1986084,0.1918335-0.2041016,0.5083618-0.0122681,0.7069702L20.2929688,21H16.5c-0.276123,0-0.5,0.223877-0.5,0.5s0.223877,0.5,0.5,0.5h5.0006104C21.7765503,21.9998169,22.0001831,21.776001,22,21.5v-5C22,16.223877,21.776123,16,21.5,16z"/></svg>
+										<svg class="header-icons fullscreen-button exit-fullscreen" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M7.5,16h-5C2.223877,16,2,16.223877,2,16.5S2.223877,17,2.5,17H7v4.5005493C7.0001831,21.7765503,7.223999,22.0001831,7.5,22h0.0006104C7.7765503,21.9998169,8.0001831,21.776001,8,21.5v-5.0006104C7.9998169,16.2234497,7.776001,15.9998169,7.5,16z M16.5,8h5C21.776123,8,22,7.776123,22,7.5S21.776123,7,21.5,7H17V2.5C17,2.223877,16.776123,2,16.5,2S16,2.223877,16,2.5v5.0006104C16.0001831,7.7765503,16.223999,8.0001831,16.5,8z M7.5,2C7.223877,2,7,2.223877,7,2.5V7H2.5C2.223877,7,2,7.223877,2,7.5S2.223877,8,2.5,8h5.0006104C7.7765503,7.9998169,8.0001831,7.776001,8,7.5v-5C8,2.223877,7.776123,2,7.5,2z M21.5,16h-5.0005493C16.2234497,16.0001831,15.9998169,16.223999,16,16.5v5.0005493C16.0001831,21.7765503,16.223999,22.0001831,16.5,22h0.0006104C16.7765503,21.9998169,17.0001831,21.776001,17,21.5V17h4.5c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,16,21.5,16z"/></svg>
+									</a>
+								</div><!-- full screen -->
+								<div class="dropdown main-header-notification flag-dropdown">
+									<a class="nav-link icon text-center" data-bs-target="#country-selector" data-bs-toggle="modal">
+										<img class="header-icons" alt="" src="../assets/img/flags/us_flag.jpg">
+									</a>
+								</div><!-- country flag -->
+								<div class="dropdown d-flex main-header-notification">
+									<a class="nav-link icon" href="javascript:;">
+										<svg class="header-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M18,14.1V10c0-3.1-2.4-5.7-5.5-6V2.5C12.5,2.2,12.3,2,12,2s-0.5,0.2-0.5,0.5V4C8.4,4.3,6,6.9,6,10v4.1c-1.1,0.2-2,1.2-2,2.4v2C4,18.8,4.2,19,4.5,19h3.7c0.5,1.7,2,3,3.8,3c1.8,0,3.4-1.3,3.8-3h3.7c0.3,0,0.5-0.2,0.5-0.5v-2C20,15.3,19.1,14.3,18,14.1z M7,10c0-2.8,2.2-5,5-5s5,2.2,5,5v4H7V10z M13,20.8c-1.6,0.5-3.3-0.3-3.8-1.8h5.6C14.5,19.9,13.8,20.5,13,20.8z M19,18H5v-1.5C5,15.7,5.7,15,6.5,15h11c0.8,0,1.5,0.7,1.5,1.5V18z"/></svg>
+										<span class="badge bg-info nav-link-badge">3</span>
+									</a>
+									<div class="dropdown-menu">
+										<div class="header-navheading">
+											<div class="d-flex">
+												<p class="main-notification-text mx-0 my-auto">Notifications (5)</p>
+												<span class="badge rounded-pill bg-success ms-auto">Mark All Read</span>
+											</div>
+										</div>
+										<div class="main-notification-list">
+											<div class="media new">
+												<div class="main-img-user online">
+													<img alt="avatar" src="../assets/img/users/5.jpg">
+												</div>
+												<div class="media-body">
+													<a href="notifications-list.html">
+														<p><strong>Andrea James</strong> added new schedule realease</p>
+														<span>Mar 20 10:40pm</span>
+													</a>
+												</div>
+											</div>
+											<div class="media">
+												<div class="main-img-user">
+													<img alt="avatar" src="../assets/img/users/2.jpg">
+												</div>
+												<div class="media-body">
+													<a href="notifications-list.html">
+														<p>Congratulate <strong>Olivia James</strong> for New template start</p>
+														<span>Mar 23 12:32pm</span>
+													</a>
+												</div>
+											</div>
+											<div class="media">
+												<div class="main-img-user online">
+													<img alt="avatar" src="../assets/img/users/3.jpg">
+												</div>
+												<div class="media-body">
+													<a href="notifications-list.html">
+														<p><strong>Elizabeth Lewis</strong> added new schedule realease</p>
+														<span>Oct 12 10:40pm</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div class="dropdown-footer">
+											<a href="notifications-list.html">View All Notifications</a>
+										</div>
+									</div>
+								</div><!-- notifications -->
+								<div class="dropdown d-flex main-header-message">
+									<a class="nav-link icon" href="javascript:;">
+										<svg class="header-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M17.5,8h-11C6.223877,8,6,8.223877,6,8.5S6.223877,9,6.5,9h11C17.776123,9,18,8.776123,18,8.5S17.776123,8,17.5,8z M13.5,11h-7C6.223877,11,6,11.223877,6,11.5S6.223877,12,6.5,12h7c0.276123,0,0.5-0.223877,0.5-0.5S13.776123,11,13.5,11z M19,2H5C3.3438721,2.0018311,2.0018311,3.3438721,2,5v10c0.0018311,1.6561279,1.3438721,2.9981689,3,3h12.2930298l3.8534546,3.8535156C21.2402344,21.9473267,21.3673706,22,21.5,22c0.276123,0,0.5-0.223877,0.5-0.5V5C21.9981689,3.3438721,20.6561279,2.0018311,19,2z M21,20.2929688l-3.1464844-3.1464844C17.7597656,17.0526733,17.6326294,17,17.5,17H5c-1.1040039-0.0014038-1.9985962-0.8959961-2-2V5c0.0014038-1.1040039,0.8959961-1.9985962,2-2h14c1.1040039,0.0014038,1.9985962,0.8959961,2,2V20.2929688z"/></svg>
+										<span class="badge bg-warning nav-link-badge">5</span>
+									</a>
+									<div class="dropdown-menu">
+										<div class="header-navheading">
+											<div class="d-flex">
+												<p class="main-message-text mx-0 my-auto">5 New Messages</p>
+												<span class="badge rounded-pill bg-success ms-auto">Mark All Read</span>
+											</div>
+										</div>
+										<div class="main-message-list">
+											<div class="media new">
+												<div class="main-img-user online">
+													<img alt="avatar" src="../assets/img/users/5.jpg">
+												</div>
+												<div class="media-body">
+													<a href="chat.html">
+														<h6 class="text-dark mb-1 tx-semibold">Paul James</h6>
+														<p>Here are some products...</p>
+														<span class="text-muted">3 Hours ago</span>
+													</a>
+												</div>
+											</div>
+											<div class="media">
+												<div class="main-img-user">
+													<img alt="avatar" src="../assets/img/users/2.jpg">
+												</div>
+												<div class="media-body">
+													<a href="chat.html">
+														<h6 class="text-dark mb-1 tx-semibold">Peter</h6>
+														<p>Are you ready to pickup your order...</p>
+														<span class="text-muted">3 Hours ago</span>
+													</a>
+												</div>
+											</div>
+											<div class="media">
+												<div class="main-img-user online">
+													<img alt="avatar" src="../assets/img/users/3.jpg">
+												</div>
+												<div class="media-body">
+													<a href="chat.html">
+														<h6 class="text-dark mb-1 tx-semibold"> Mita Sunny</h6>
+														<p>All set ! Now time to get to know...</p>
+														<span class="text-muted">2 Hours ago</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div class="dropdown-footer">
+											<a href="chat.html">View All</a>
+										</div>
+									</div>
+								</div><!-- message -->
+								<div class="dropdown d-flex main-profile-menu">
+									<a class="d-flex" href="javascript:;">
+										<span class="main-img-user">
+											<img alt="avatar" src="../assets/img/users/6.jpg">
+										</span>
+									</a>
+									<div class="dropdown-menu">
+										<div class="header-navheading">
+											<h6 class="main-notification-title">Dennis Mark</h6>
+											<p class="main-notification-text">Web Designer</p>
+										</div>
+										<a class="dropdown-item border-top" href="profile.html">
+											<i class="fe fe-user"></i> My Profile
+										</a>
+										<a class="dropdown-item" href="profile.html">
+											<i class="fe fe-edit"></i> Edit Profile
+										</a>
+										<a class="dropdown-item" href="profile.html">
+											<i class="fe fe-settings"></i> Account Settings
+										</a>
+										<a class="dropdown-item" href="profile.html">
+											<i class="fe fe-compass"></i> Activity
+										</a>
+										<a class="dropdown-item" href="signin.html">
+											<i class="fe fe-power"></i> Sign Out
+										</a>
+									</div>
+								</div><!-- profile -->
+								<div class="dropdown d-flex header-settings">
+									<a href="javascript:;" class="nav-link icon" data-bs-toggle="sidebar-right" data-bs-target=".sidebar-right">
+										<svg class="header-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M21.5,17h-19C2.223877,17,2,17.223877,2,17.5S2.223877,18,2.5,18h19c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,17,21.5,17z M2.5,8h19C21.776123,8,22,7.776123,22,7.5S21.776123,7,21.5,7h-19C2.223877,7,2,7.223877,2,7.5S2.223877,8,2.5,8z M21.5,12h-19C2.223877,12,2,12.223877,2,12.5S2.223877,13,2.5,13h19c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,12,21.5,12z"/></svg>
+									</a>
+								</div><!-- header settings -->
+							</div>
+						</div>
+					</div>
+					<div class="d-flex header-setting-icon demo-icon">
+						<a class="nav-link icon" href="javascript:;">
+							<svg class="settings-icon fa-spin" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M11.5,7.9c-2.3,0-4,1.9-4,4.2s1.9,4,4.2,4c2.2,0,4-1.9,4-4.1c0,0,0-0.1,0-0.1C15.6,9.7,13.7,7.9,11.5,7.9z M14.6,12.1c0,1.7-1.5,3-3.2,3c-1.7,0-3-1.5-3-3.2c0-1.7,1.5-3,3.2-3C13.3,8.9,14.7,10.3,14.6,12.1C14.6,12,14.6,12.1,14.6,12.1z M20,13.1c-0.5-0.6-0.5-1.5,0-2.1l1.4-1.5c0.1-0.2,0.2-0.4,0.1-0.6l-2.1-3.7c-0.1-0.2-0.3-0.3-0.5-0.2l-2,0.4c-0.8,0.2-1.6-0.3-1.9-1.1l-0.6-1.9C14.2,2.1,14,2,13.8,2H9.5C9.3,2,9.1,2.1,9,2.3L8.4,4.3C8.1,5,7.3,5.5,6.5,5.3l-2-0.4C4.3,4.9,4.1,5,4,5.2L1.9,8.8C1.8,9,1.8,9.2,2,9.4l1.4,1.5c0.5,0.6,0.5,1.5,0,2.1L2,14.6c-0.1,0.2-0.2,0.4-0.1,0.6L4,18.8c0.1,0.2,0.3,0.3,0.5,0.2l2-0.4c0.8-0.2,1.6,0.3,1.9,1.1L9,21.7C9.1,21.9,9.3,22,9.5,22h4.2c0.2,0,0.4-0.1,0.5-0.3l0.6-1.9c0.3-0.8,1.1-1.2,1.9-1.1l2,0.4c0.2,0,0.4-0.1,0.5-0.2l2.1-3.7c0.1-0.2,0.1-0.4-0.1-0.6L20,13.1z M18.6,18l-1.6-0.3c-1.3-0.3-2.6,0.5-3,1.7L13.4,21H9.9l-0.5-1.6c-0.4-1.3-1.7-2-3-1.7L4.7,18l-1.8-3l1.1-1.3c0.9-1,0.9-2.5,0-3.5L2.9,9l1.8-3l1.6,0.3c1.3,0.3,2.6-0.5,3-1.7L9.9,3h3.5l0.5,1.6c0.4,1.3,1.7,2,3,1.7L18.6,6l1.8,3l-1.1,1.3c-0.9,1-0.9,2.5,0,3.5l1.1,1.3L18.6,18z"/></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Main Header-->
+
+		<!-- Sidemenu -->
+		<div class="sticky">
+			<div class="main-menu main-sidebar main-sidebar-sticky side-menu">
+				<div class="main-sidebar-header main-container-1 active">
+					<div class="sidemenu-logo">
+						<a class="main-logo" href="index.html">
+							<img src="../assets/img/brand/logo-light.png" class="header-brand-img desktop-logo-dark" alt="logo">
+							<img src="../assets/img/brand/icon-light.png" class="header-brand-img icon-logo-dark" alt="logo">
+							<img src="../assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+							<img src="../assets/img/brand/icon.png" class="header-brand-img icon-logo" alt="logo">
+						</a>
+					</div>
+					<div class="main-sidebar-body main-body-1">
+						<div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg" fill="#c9bebe" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/></svg></div>
+						<ul class="menu-nav nav">
+							<li class="nav-header"><span class="nav-label">Dashboard</span></li>
+							<li class="nav-item">
+								<a class="nav-link" href="index.html">
+									<svg class="sidemenu-icon menu-icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M10.5,13h-7C3.2,13,3,13.2,3,13.5v7C3,20.8,3.2,21,3.5,21h7c0.3,0,0.5-0.2,0.5-0.5v-7C11,13.2,10.8,13,10.5,13z M10,20H4v-6h6V20z M10.5,3h-7C3.2,3,3,3.2,3,3.5v7C3,10.8,3.2,11,3.5,11h7c0.3,0,0.5-0.2,0.5-0.5v-7C11,3.2,10.8,3,10.5,3z M10,10H4V4h6V10z M20.5,3h-7C13.2,3,13,3.2,13,3.5v7c0,0.3,0.2,0.5,0.5,0.5h7c0.3,0,0.5-0.2,0.5-0.5v-7C21,3.2,20.8,3,20.5,3z M20,10h-6V4h6V10z M20.5,16.5h-3v-3c0-0.3-0.2-0.5-0.5-0.5s-0.5,0.2-0.5,0.5v3h-3c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5h3v3c0,0.3,0.2,0.5,0.5,0.5h0c0.3,0,0.5-0.2,0.5-0.5v-3h3c0.3,0,0.5-0.2,0.5-0.5S20.8,16.5,20.5,16.5z"/></svg>
+									<span class="sidemenu-label">Dashboard</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link with-sub" href="javascript:;">
+									<svg class="sidemenu-icon menu-icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M21.5,17h-15C5.6715698,17,5,16.3284302,5,15.5S5.6715698,14,6.5,14h10.9638672c1.2661133,0.0041504,2.3724365-0.8544312,2.6826172-2.0819702l1.8378906-7.2959595c0.0680542-0.2669678-0.0932617-0.5385742-0.3602905-0.6066284C21.5834961,4.005127,21.5418091,3.999939,21.5,4H6.3908691L6.3642578,3.8935547C6.0869751,2.7798462,5.0861816,1.9986572,3.9384766,2H2.5C2.223877,2,2,2.223877,2,2.5S2.223877,3,2.5,3h1.4384766C4.6269531,2.9990234,5.227356,3.4676514,5.3935547,4.1357422L7.609375,13H6.5C5.1192627,13,4,14.1192627,4,15.5S5.1192627,18,6.5,18h1.0124512C7.1818848,18.4303589,7.0018311,18.9573364,7,19.5C7,20.8807373,8.1192627,22,9.5,22s2.5-1.1192627,2.5-2.5c-0.0018311-0.5426636-0.1818848-1.0696411-0.5124512-1.5h4.0249023C15.1818848,18.4303589,15.0018311,18.9573364,15,19.5c0,1.3807373,1.1192627,2.5,2.5,2.5s2.5-1.1192627,2.5-2.5c-0.0018311-0.5426636-0.1818848-1.0696411-0.5124512-1.5H21.5c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,17,21.5,17z M6.6416016,5h14.2167969l-1.6816406,6.6738281C18.9780884,12.4567871,18.2716675,13.0037842,17.4638672,13H8.65625L6.6416016,5z M9.5,21C8.6715698,21,8,20.3284302,8,19.5S8.6715698,18,9.5,18s1.5,0.6715698,1.5,1.5C10.9990845,20.328064,10.328064,20.9990845,9.5,21z M17.5,21c-0.8284302,0-1.5-0.6715698-1.5-1.5s0.6715698-1.5,1.5-1.5s1.5,0.6715698,1.5,1.5C18.9990845,20.328064,18.328064,20.9990845,17.5,21z"/></svg>
+									<span class="sidemenu-label">ECommerce</span>
+									<i class="angle fe fe-chevron-right"></i>
+								</a>
+								<ul class="nav-sub">
+									<li class="side-menu-label1"><a href="javascript:;">ECommerce</a></li>
+									<li class="nav-sub-item">
+										<a class="nav-sub-link" href="ecommerce-dashboard.html">Dashboard</a>
+									</li>
+									<li class="nav-sub-item">
+										<a class="nav-sub-link" href="ecommerce-products.html">Shop</a>
+									</li>
+									<li class="nav-sub-item">
+										<a class="nav-sub-link" href="ecommerce-product-details.html">Product Details</a>
+									</li>
+									<li class="nav-sub-
