@@ -94,4 +94,27 @@ class CourseController extends Controller
         $title = "Add edit Course";
         return view('admin.course.add_edit_course')->with(['course'=>$course,'title'=>$title,'categories'=>$categories]);
     }
+
+    public function updateCourseStatus(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            if ($data['status']=="Active") {
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        Course::where('id',$data['value_id'])->update(['status'=>$status]);
+        return response()->json(['status'=>$status,'value_id'=>$data['value_id']]);
+        }
+    }
+
+    public function deleteStatus($id){
+        $course = Course::select('image')->where('id',$id)->first();
+        $course_image_path = 'admin/course/large/';
+        if (file_exists($course_image_path.$course->image)) {
+            unlink($course_image_path.$course->image);
+        }
+        Course::where('id',$id)->delete();
+        return redirect()->back();
+    }
 }

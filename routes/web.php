@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\FilterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +57,18 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::post('append-categories-level','CategoryController@appendCategoriesLevel');  //.................v32
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Course<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('courses',[CourseController::class,'view_course'])->name('course.views'); 
-        Route::any('add-edit-course/{id?}',[CourseController::class,'add_edit_course'])->name('addEdit.course');  
+        Route::any('add-edit-course/{id?}',[CourseController::class,'add_edit_course'])->name('addEdit.course');
+        Route::post('update-course-status',[CourseController::class,'updateCourseStatus'])->name('course.status'); 
+        Route::get('delete-course/{id}',[CourseController::class,'deleteStatus'])->name('course.delete');
+        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Filter<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        Route::get('filter',[FilterController::class,'filters'])->name('filter.views');
+        Route::any('add-edit-filter/{id?}',[FilterController::class,'add_edit_filter'])->name('addEdit.filter');
+        Route::post('update-filter-status',[FilterController::class,'updatefilterStatus'])->name('filter.status'); 
+        Route::get('delete-filter/{id}',[FilterController::class,'deleteStatus'])->name('filter.delete');
+        //filter value................
+        Route::get('filters-Value',[FilterController::class,'filtersValues'])->name('filtersValues.views');
+        Route::any('add-edit-filters-Value/{id?}',[FilterController::class,'add_edit_filter_value'])->name('addEdit.filtersValue');
+        Route::post('update-filters-Value-status',[FilterController::class,'updatefilterValueStatus'])->name('filtersValue.status'); 
+        Route::get('delete-filtersValue/{id}',[FilterController::class,'deleteStatus'])->name('filtersValue.delete');
     });
 });

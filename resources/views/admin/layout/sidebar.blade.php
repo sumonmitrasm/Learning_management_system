@@ -131,7 +131,7 @@
                      <a href="javascript:void(0)">Forms</a>
                   </li>
                   <li><a href="{{route('course.views')}}" class="slide-item">Course</a></li>
-                  <li><a href="advanced-forms.html" class="slide-item"> Advanced Forms</a></li>
+                  <li><a href="{{route('filter.views')}}" class="slide-item"> Filter</a></li>
                   <li><a href="form-wizard.html" class="slide-item"> Form Wizard</a></li>
                   <li><a href="wysiwyag.html" class="slide-item"> Form Edit</a></li>
                   <li><a href="form-sizes.html" class="slide-item"> Form Element Sizes</a></li>
