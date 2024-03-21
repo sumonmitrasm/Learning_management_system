@@ -16,7 +16,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 class CourseController extends Controller
 {
     public function view_course(){
-        $course = Course::with('category','section')->get();
+        $course = Course::with(['category','section'])->get();
+        //dd($course);die;
         $title = "Course Details";
         return view('admin.course.course')->with(['course'=>$course,'title'=>$title]);
     }
@@ -45,7 +46,7 @@ class CourseController extends Controller
                 
                     if ($image_tmp->isValid()) {
                         // Delete the old image if it exists
-                        if ($Course->image && File::exists(public_path('admin/course/large/' . $course->image))) {
+                        if ($course->image && File::exists(public_path('admin/course/large/' . $course->image))) {
                             File::delete(public_path('admin/course/large/' . $course->image));
                         }
                         // Upload the new image
@@ -55,10 +56,19 @@ class CourseController extends Controller
                         Image::make($image_tmp)->save($medium_image_path);
                         $course->image = $imageName;
                     }
-                }                
+                }
+                $categoryDetails = Category::find($data['category_id']);
+                //echo "<pre>";print_r($categoryDetails);die;
+                $course->section_id = $categoryDetails['section_id']; 
+                $course->category_id = $data['category_id'];            
                 $course->course_name = $data['course_name'];
                 $course->slug = Str::slug($course->course_name);
-                $course->admin_id = Auth::guard('admin')->user()->id; 
+                if ($id=="") {
+                    $adminType = Auth::guard('admin')->user()->type;
+                    $admin_id = Auth::guard('admin')->user()->id;
+                    $course->admin_type = $adminType;
+                    $course->admin_id = $admin_id;
+                }
                 $course->course_code = $data['course_code'];
                 $course->course_price = $data['course_price'];
                 $course->course_discount = $data['course_discount'];
@@ -80,7 +90,6 @@ class CourseController extends Controller
             } 
         }
         $categories = Section::with('categories')->get();
-        //echo "<pre>";print_r($categories);die;
         $course = Course::find($id);
         $title = "Add edit Course";
         return view('admin.course.add_edit_course')->with(['course'=>$course,'title'=>$title,'categories'=>$categories]);

@@ -62,9 +62,9 @@
                                         <tbody>
                                             @foreach($course as $index => $value)
                                             <tr>
-                                                <td>{{ $value + 1 }}</td>
+                                                <td>{{ $index + 1 }}</td>
                                                 <td>{{ $value['section']['name'] }}</td>
-                                                <td>{{ $value['value']['value_name'] }}</td>
+                                                <td>{{ $value['category']['category_name'] }}</td>
                                                 <td>
                                                     @if($value['status'] == 1)
                                                     <a class="updateCourseStatus" id="value-{{$value['id']}}" value_id="{{$value['id']}}" href="javascript:void(0)"><i style="font-size:150%; color: #efa06b;" class="fa-solid fa-toggle-on fa-lg"  status="Active"></i></a>
