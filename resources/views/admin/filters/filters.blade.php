@@ -16,9 +16,9 @@
                     <!--div-->
                     <div class="card">
                         <div class="card-header justify-content-between">
-                            <div class="card-title">{{ $title }}</div>
-                            <div><a  href="{{route('addEdit.filter')}}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-info" class="btn btn-block btn-info">Add Filter Columns</a></div>
-                            <div><a  href="{{route('filtersValues.views')}}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-info" class="btn btn-block btn-info">Filters Value</a></div>
+                            <div class="card-title"><a  href="{{route('addEdit.filter')}}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-info" class="btn btn-block btn-info">Add Filter Columns</a></div>
+                            <div></div>
+                            <div><a  href="{{route('filtersValues.views')}}" style="max-width: 150px; float: left; display: inline-block" class="btn btn-block btn-info" class="btn btn-block btn-info">Filters Value</a></div>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -65,7 +65,13 @@
                                             @foreach($filters as $index => $value)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $value['cat_ids'] }}</td>
+                                                <td>
+                                                    @php
+                                                    $catIdsArray = explode(',', $value['cat_ids']);
+                                                    $categoryNames = \App\Models\Category::whereIn('id', $catIdsArray)->pluck('category_name')->toArray();
+                                                    echo implode(', ', $categoryNames);
+                                                    @endphp
+                                                </td>
                                                 <td>{{ $value['filter_name'] }}</td>
                                                 <td>{{ $value['filter_column'] }}</td>
                                                 <td>
@@ -76,7 +82,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('addEdit.filter')}}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
+                                                    <a href="{{ route('addEdit.filter', ['id' => $value['id']]) }}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
                                                     <a href="javascript:void(0)" title="Delete Course" class="confirmDelete" module="course" moduleid="{{$value['id']}}"><i style="font-size:25px; color:red;" class="mdi mdi-file-excel-box"></i></a>
                                                 </td>
                                             </tr>

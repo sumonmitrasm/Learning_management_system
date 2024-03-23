@@ -33,6 +33,16 @@ class FilterController extends Controller
             $filter = ProductsFilter::find($id);
             $message = "Product Filter update successfully";
         }
+        if($request->isMethod('post')){
+            $data = $request->all();
+            $cat_ids = implode(',',$data['cat_ids']);
+            //echo"<pre>";print_r($cat_ids);die;
+            $filter->cat_ids = $cat_ids;
+            $filter->filter_name = $data['filter_name'];
+            $filter->filter_column = $data['filter_column'];
+            $filter->status = 1;
+            $filter->save();
+        }
         $categories = Section::with('categories')->get()->toArray();
         return view('admin.filters.add_edit_filter')->with(compact('title','categories','filter'));
     }

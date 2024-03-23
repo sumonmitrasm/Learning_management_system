@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products_filters', function (Blueprint $table) {
             $table->id();
-            $table->integer('cat_ids');
+            $table->string('cat_ids');
             $table->string('filter_name');
             $table->string('filter_column');
             $table->tinyInteger('status');
