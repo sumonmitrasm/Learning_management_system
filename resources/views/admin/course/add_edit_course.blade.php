@@ -124,6 +124,13 @@
                         </div>
                         <div class="col-sm-12 col-md-12">
                            <div class="mb-3">
+                              <div id="lodeAvailableFilters">
+                                 @include('admin.course.lode_available_filters')
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12">
+                           <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Course Price</label>
                               <input type="number" class="form-control" id="course_price" name="course_price" @if(!empty($course['course_price'])) value="{{$course['course_price']}}" @else value="{{old('course_price')}}" @endif placeholder="Enter course price">
                               <p id="course-course_price"></p>
