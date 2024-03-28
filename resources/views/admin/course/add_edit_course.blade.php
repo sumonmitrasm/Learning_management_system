@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12">
                            <div class="mb-3">
-                              <div id="lodeAvailableFilters">
+                              <div class="loadFilters">
                                  @include('admin.course.lode_available_filters')
                               </div>
                            </div>
