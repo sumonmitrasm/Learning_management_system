@@ -214,4 +214,23 @@ $(document).ready(function(){
 			});
 		});
 
+
+		$(document).on("change","#category_id",function(){
+			var category_id = $(this).val();
+			$.ajax({
+				headers: {
+					 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				   },
+				   type:'post',
+				   url:'/admin/category-filters',
+				   data:{category_id:category_id},
+				   success:function(resp){
+					   //alert(resp);
+					   $(".loadFilters").html(resp.view);
+				   },error:function(){
+					   alert("Error");
+				   }
+			});
+		});	
+
 });

@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\Category;
 use Session;
 use DB;
+use Illuminate\Support\Facades\view;
 class FilterController extends Controller
 {
     public function filters()
@@ -74,5 +75,13 @@ class FilterController extends Controller
         }
         $filters = ProductsFilter::where('status',1)->get()->toArray();
         return view('admin.filters.add_edit_filter_value')->with(compact('title','filterValue','filters'));
+    }
+
+    public function lodeFilter(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $category_id = $data['category_id'];
+            return response()->json(['view'=>(string)view::make('admin.course.lode_available_filters')->with(compact('category_id'))]);
+        }
     }
 }

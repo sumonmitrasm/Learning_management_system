@@ -70,5 +70,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('add-edit-filters-Value/{id?}',[FilterController::class,'add_edit_filter_value'])->name('addEdit.filtersValue');
         Route::post('update-filters-Value-status',[FilterController::class,'updatefilterValueStatus'])->name('filtersValue.status'); 
         Route::get('delete-filtersValue/{id}',[FilterController::class,'deleteStatus'])->name('filtersValue.delete');
+        //........filter lode file v-74
+        Route::post('category-filters',[FilterController::class,'lodeFilter'])->name('category.filter'); 
     });
 });
