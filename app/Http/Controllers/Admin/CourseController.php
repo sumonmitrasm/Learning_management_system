@@ -13,7 +13,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Models\ProductsFilter;
-use Intervention\Image\ImageManagerStatic as Image;
+use Image;
+// use Intervention\Image\ImageManagerStatic as Image;
 class CourseController extends Controller
 {
     public function view_course(){
@@ -57,7 +58,7 @@ class CourseController extends Controller
                         Image::make($image_tmp)->save($medium_image_path);
                         $course->image = $imageName;
                     }
-                }
+                }    
                 $categoryDetails = Category::find($data['category_id']);
                 //echo "<pre>";print_r($categoryDetails);die;
                 $course->section_id = $categoryDetails['section_id']; 
@@ -71,10 +72,11 @@ class CourseController extends Controller
                     $course->admin_id = $admin_id;
                 }
                 $productsFilters = ProductsFilter::productsFilters();
-                foreach($productsFilters as $filter){
-                    $filterAvailable = ProductsFilter::filterAvailable($filter['id'],$data['category_id']);
-                    if ($filterAvailable=="Yes") {
-                        if (isset($filter['filter_column']) && $data[$filter['filter_column']]) {
+                foreach ($productsFilters as $filter) {
+                    //echo $data[$filter['filter_column']];die;
+                    $filterAvailable = ProductsFilter::filterAvailable($filter['id'], $data['category_id']);
+                    if ($filterAvailable == "Yes") {
+                        if (isset($filter['filter_column']) && isset($data[$filter['filter_column']])) {
                             $course->{$filter['filter_column']} = $data[$filter['filter_column']];
                         }
                     }
@@ -101,6 +103,7 @@ class CourseController extends Controller
         }
         $categories = Section::with('categories')->get();
         $course = Course::find($id);
+        //dd($course);die;
         $title = "Add edit Course";
         return view('admin.course.add_edit_course')->with(['course'=>$course,'title'=>$title,'categories'=>$categories]);
     }

@@ -160,7 +160,7 @@
                          <div class="col-sm-12 col-md-12">
                             <div class="mb-3">
                                <label for="exampleInputEmail1" class="form-label">Image</label>
-                               <input id="img1" type="file" class="form-control" id="image" name="image" ><br>
+                               <input id="img1" type="file" class="form-control" name="image" ><br>
                                <div id="selectedBannerimages"></div>
                                @if(!empty($course['image']))
                                <div>
