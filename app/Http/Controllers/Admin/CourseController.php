@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use App\Models\ProductsFilter;
 use Intervention\Image\ImageManagerStatic as Image;
 class CourseController extends Controller
 {
@@ -69,6 +70,15 @@ class CourseController extends Controller
                     $course->admin_type = $adminType;
                     $course->admin_id = $admin_id;
                 }
+                $productsFilters = ProductsFilter::productsFilters();
+                foreach($productsFilters as $filter){
+                    $filterAvailable = ProductsFilter::filterAvailable($filter['id'],$data['category_id']);
+                    if ($filterAvailable=="Yes") {
+                        if (isset($filter['filter_column']) && $data[$filter['filter_column']]) {
+                            $course->{$filter['filter_column']} = $data[$filter['filter_column']];
+                        }
+                    }
+                }
                 $course->course_code = $data['course_code'];
                 $course->course_price = $data['course_price'];
                 $course->course_discount = $data['course_discount'];
@@ -83,7 +93,7 @@ class CourseController extends Controller
                     $course->is_featured = "No";
                 }
                 $course->meta_description = $data['meta_description'];
-                $course->status = 1;   
+                $course->status = 1; 
                 $course->save();
             } else {
                 return response()->json(['type' => 'error', 'errors' => $validator->messages()]);   
