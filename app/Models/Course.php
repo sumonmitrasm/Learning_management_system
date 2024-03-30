@@ -14,4 +14,8 @@ class Course extends Model
     public function section(){
         return $this->belongsTo(Section::class, 'section_id', 'id')->select('id','name');
     }
+    public function attribute()
+    {
+        return $this->hasMany('App\Models\Attribute')->where('status',1);
+    }
 }

@@ -232,5 +232,22 @@ $(document).ready(function(){
 				   }
 			});
 		});	
+		//fild create..................................................................
+		var maxFieldABOUT = 210; 
+		var field_wrapper = $('.field_wrapper');
+		var fieldHTMLABOUT = '<div><div style="height: 5px;"></div><input type="text" name="title[]" class="form-control" style="width: 830px;" placeholder="Enter Title"/>&nbsp;<input type="file" name="video[]" class="form-control" style="width: 830px;" placeholder="Enter Video"/>&nbsp;<textarea name="description[]" class="form-control" style="width: 830px;" placeholder="Enter Description"></textarea><a href="javascript:void(0);" class="remove_about_button" style="color: red;">Delete</a></div>'; //New input field html 
+		var x = 1;
+		$('.add_button').click(function(){
+			if(x < maxFieldABOUT){ 
+				x++;
+				$(field_wrapper).append(fieldHTMLABOUT); 
+			}
+		});
+		$(field_wrapper).on('click', '.remove_about_button', function(e){
+			e.preventDefault();
+			$(this).parent('div').remove();
+			x--;
+		})
+
 
 });

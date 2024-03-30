@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FilterController;
+use App\Http\Controllers\Admin\AttributeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,9 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('add-edit-course/{id?}',[CourseController::class,'add_edit_course'])->name('addEdit.course');
         Route::post('update-course-status',[CourseController::class,'updateCourseStatus'])->name('course.status'); 
         Route::get('delete-course/{id}',[CourseController::class,'deleteStatus'])->name('course.delete');
+        //Course attributes...........................
+        Route::any('add-course-attributes/{id?}',[AttributeController::class,'add_attributes'])->name('addattribute.course');
+        Route::any('edit-attributes/{id?}',[AttributeController::class,'editattributes'])->name('editAttribute.course');
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Filter<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('filter',[FilterController::class,'filters'])->name('filter.views');
         Route::any('add-edit-filter/{id?}',[FilterController::class,'add_edit_filter'])->name('addEdit.filter');
