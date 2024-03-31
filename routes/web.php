@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +18,9 @@ use App\Http\Controllers\Admin\AttributeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -68,7 +69,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('add-price-attributes/{id?}',[AttributeController::class,'addPriceattributes'])->name('addPriceattribute.course');
         Route::any('edit-attributes-price/{id?}',[AttributeController::class,'editattributesPrice'])->name('editAttributePrice.course');
         Route::post('update-attributes-price-status',[AttributeController::class,'updateAttributesPriceStatus'])->name('attributesPrice.status'); 
-        Route::get('delete-attributeprice/{id}',[FilterController::class,'deleteStatus'])->name('attributesPrice.delete');
+        Route::get('delete-attributeprice/{id}',[AttributeController::class,'deleteattribitePrice'])->name('attributesPrice.delete');
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Filter<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('filter',[FilterController::class,'filters'])->name('filter.views');
         Route::any('add-edit-filter/{id?}',[FilterController::class,'add_edit_filter'])->name('addEdit.filter');
@@ -82,4 +83,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         //........filter lode file v-74
         Route::post('category-filters',[FilterController::class,'lodeFilter'])->name('category.filter'); 
     });
+});
+Route::namespace('App\Http\Controllers\Front')->group(function(){
+    Route::get('/', [FrontendController::class, 'home'])->name('/');
 });

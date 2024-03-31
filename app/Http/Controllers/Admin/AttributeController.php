@@ -114,4 +114,13 @@ class AttributeController extends Controller
         return response()->json(['status'=>$status,'price_id'=>$data['price_id']]);
         }
     }
+    public function deleteStatus($id){
+        $course = Course::select('image')->where('id',$id)->first();
+        $course_image_path = 'admin/course/large/';
+        if (file_exists($course_image_path.$course->image)) {
+            unlink($course_image_path.$course->image);
+        }
+        Course::where('id',$id)->delete();
+        return redirect()->back();
+    }
 }
