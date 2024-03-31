@@ -16,6 +16,10 @@ class Course extends Model
     }
     public function attribute()
     {
-        return $this->hasMany('App\Models\Attribute')->where('status',1);
+        return $this->hasMany('App\Models\Attribute');
+    }
+    public function attributePrice()
+    {
+        return $this->hasMany('App\Models\AttributesPrice');
     }
 }

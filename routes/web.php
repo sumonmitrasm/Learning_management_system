@@ -61,9 +61,14 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('add-edit-course/{id?}',[CourseController::class,'add_edit_course'])->name('addEdit.course');
         Route::post('update-course-status',[CourseController::class,'updateCourseStatus'])->name('course.status'); 
         Route::get('delete-course/{id}',[CourseController::class,'deleteStatus'])->name('course.delete');
-        //Course attributes...........................
+        //Course attributes..................................>>
         Route::any('add-course-attributes/{id?}',[AttributeController::class,'add_attributes'])->name('addattribute.course');
         Route::any('edit-attributes/{id?}',[AttributeController::class,'editattributes'])->name('editAttribute.course');
+        //Course price attributes............................>>
+        Route::any('add-price-attributes/{id?}',[AttributeController::class,'addPriceattributes'])->name('addPriceattribute.course');
+        Route::any('edit-attributes-price/{id?}',[AttributeController::class,'editattributesPrice'])->name('editAttributePrice.course');
+        Route::post('update-attributes-price-status',[AttributeController::class,'updateAttributesPriceStatus'])->name('attributesPrice.status'); 
+        Route::get('delete-attributeprice/{id}',[FilterController::class,'deleteStatus'])->name('attributesPrice.delete');
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Filter<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('filter',[FilterController::class,'filters'])->name('filter.views');
         Route::any('add-edit-filter/{id?}',[FilterController::class,'add_edit_filter'])->name('addEdit.filter');

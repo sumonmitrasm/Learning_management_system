@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Models\Attribute;
+use App\Models\AttributesPrice;
 use App\Models\Course;
 use Session;
 class AttributeController extends Controller
@@ -45,7 +46,7 @@ class AttributeController extends Controller
         $title = "Attributes Details";
         $coursedata = Course::with('attribute')->select('id')->find($id);
         $attributes = Attribute::all();
-        return view('admin.course.attribute')->with(['title' => $title, 'coursedata'=>$coursedata, 'attributes'=>$attributes]);
+        
     }
 
     public function editattributes(Request $request, $id=null){
@@ -61,6 +62,56 @@ class AttributeController extends Controller
              session::flash('success_message',$message);
              return redirect()->back();
 
+        }
+    }
+
+    public function addPriceattributes(Request $request, $id){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            foreach($data['price'] as $key=> $value){
+                $attributes = new AttributesPrice();
+                $attributes->price = $value;
+                $attributes->size = $data['size'][$key];
+                $attributes->stock = $data['stock'][$key];
+                $attributes->sku = $data['sku'][$key];
+                $attributes->course_id  = $id;
+                $attributes->status = 1;
+                $attributes->save();
+            }
+            $message = 'New Additional Price has been uploaded successfully!';
+            Session::flash('success_message',$message);
+            return redirect()->back();
+        }
+        $title = "Attributes Details";
+        $coursedata = Course::with('attributePrice')->select('id')->find($id);
+        $attributes = AttributesPrice::all();
+        return view('admin.course.attribute_price')->with(['title' => $title, 'coursedata'=>$coursedata, 'attributes'=>$attributes]);
+    }
+    public function editattributesPrice(Request $request, $id){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            //dd($data);
+            foreach ($data['attrId'] as $key => $attr) {
+                if (!empty($attr)) {
+                    AttributesPrice::where(['id'=>$data['attrId'][$key]])->update(['price'=>$data['price'][$key],'size'=>$data['size'][$key],'stock'=>$data['stock'][$key],'sku'=>$data['sku'][$key]]);
+                }
+            }
+            $message = "Attribute Price details has been updated successfully";
+            session::flash('success_message',$message);
+            return redirect()->back();
+
+        }
+    }
+    public function updateAttributesPriceStatus(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            if ($data['status']=="Active") {
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        AttributesPrice::where('id',$data['price_id'])->update(['status'=>$status]);
+        return response()->json(['status'=>$status,'price_id'=>$data['price_id']]);
         }
     }
 }

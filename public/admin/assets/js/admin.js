@@ -214,7 +214,7 @@ $(document).ready(function(){
 			});
 		});
 
-
+//category id change for filter
 		$(document).on("change","#category_id",function(){
 			var category_id = $(this).val();
 			$.ajax({
@@ -248,6 +248,47 @@ $(document).ready(function(){
 			$(this).parent('div').remove();
 			x--;
 		})
+		//fild create for attribute price..................................................................
+		var maxFieldABOUT = 210; 
+		var field_wrapper_price = $('.field_wrapper_price');
+		var fieldHTMLABOUT = '<div><div style="height: 5px;"></div><input type="text" name="size[]" class="form-control" style="width: 830px;" placeholder="Enter Size"/>&nbsp;<input type="text" name="price[]" class="form-control" style="width: 830px;" placeholder="Enter Price"/>&nbsp;<input type="text" name="stock[]" class="form-control" style="width: 830px;" placeholder="Enter Stock"/>&nbsp;<input type="text" name="sku[]" class="form-control" style="width: 830px;" placeholder="Enter SKU"/><a href="javascript:void(0);" class="remove_about_button" style="color: red;">Delete</a></div>'; //New input field html 
+		var x = 1;
+		$('.add_button').click(function(){
+			if(x < maxFieldABOUT){ 
+				x++;
+				$(field_wrapper_price).append(fieldHTMLABOUT); 
+			}
+		});
+		$(field_wrapper_price).on('click', '.remove_about_button', function(e){
+			e.preventDefault();
+			$(this).parent('div').remove();
+			x--;
+		})
+
+		//attribute price status ......................
+		$(document).on("click",".updateAttibusePriceStatus",function(){
+			var status = $(this).children("i").attr("status");
+			var price_id = $(this).attr("price_id");
+			$.ajax({
+				headers: {
+					 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				   },
+				   type:'post',
+				   url:'/admin/update-attributes-price-status',
+				   data:{status:status,price_id:price_id},
+				   success:function(resp){
+					   if (resp['status']==0) {
+						$("#price-"+price_id).html("<i style='font-size:150%; color: #efa06b;' class='mdi mdi-bookmark-outline' status='Inactive'></i>");
+					}else{
+						if (resp['status']==1) {
+							$("#price-"+price_id).html("<i style='font-size:150%; color: #efa06b;' class='mdi mdi-bookmark-check' status='Active'></i>");
+						}
+					}
+				   },error:function(){
+					   alert("Error");
+				   }
+			});
+		});
 
 
 });
