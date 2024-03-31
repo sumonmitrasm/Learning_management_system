@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
     public function home(){
-        echo "hellow";die;
+        return view('front.home.home');
     }
 }

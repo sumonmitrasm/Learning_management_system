@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\FrontendController;
+use App\Http\Controllers\Front\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
