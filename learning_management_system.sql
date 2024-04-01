@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2024 at 02:56 PM
+-- Generation Time: Apr 01, 2024 at 02:04 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -76,6 +76,46 @@ CREATE TABLE `attributes` (
 INSERT INTO `attributes` (`id`, `course_id`, `title`, `video`, `description`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Teat Video1', '81655.mp4', 'Description 1', 1, '2024-03-30 07:43:46', '2024-03-30 07:51:32'),
 (2, 1, 'Text Video2', '75829.mp4', 'Text Video 2', 1, '2024-03-30 07:44:22', '2024-03-30 07:51:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attributes_prices`
+--
+
+CREATE TABLE `attributes_prices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `price` double(8,2) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attributes_prices`
+--
+
+INSERT INTO `attributes_prices` (`id`, `course_id`, `size`, `price`, `stock`, `sku`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Small', 459.00, 21, 'HJ567', 1, '2024-03-31 02:47:19', '2024-03-31 03:09:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -198,7 +238,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2024_03_18_064450_create_courses_table', 2),
 (12, '2024_03_21_092756_create_products_filters_table', 3),
 (13, '2024_03_21_092818_create_products_filters_values_table', 3),
-(14, '2024_03_30_091807_create_attributes_table', 4);
+(14, '2024_03_30_091807_create_attributes_table', 4),
+(15, '2024_03_31_073008_create_attributes_prices_table', 5),
+(16, '2024_04_01_062342_create_brands_table', 6),
+(17, '2024_04_01_063146_create_sliders_table', 7);
 
 -- --------------------------------------------------------
 
@@ -304,6 +347,21 @@ INSERT INTO `sections` (`id`, `name`, `status`, `created_at`, `updated_at`) VALU
 (5, 'Newspaper', 1, NULL, NULL),
 (6, 'Pathway', 1, NULL, NULL),
 (7, 'Given short time to complete CRUD_\n            It is persecution', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -428,6 +486,19 @@ ALTER TABLE `attributes`
   ADD KEY `attributes_course_id_foreign` (`course_id`);
 
 --
+-- Indexes for table `attributes_prices`
+--
+ALTER TABLE `attributes_prices`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `attributes_prices_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -488,6 +559,12 @@ ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -530,6 +607,18 @@ ALTER TABLE `attributes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `attributes_prices`
+--
+ALTER TABLE `attributes_prices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -551,7 +640,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -576,6 +665,12 @@ ALTER TABLE `products_filters_values`
 --
 ALTER TABLE `sections`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -610,6 +705,12 @@ ALTER TABLE `vendors_business_details`
 --
 ALTER TABLE `attributes`
   ADD CONSTRAINT `attributes_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`);
+
+--
+-- Constraints for table `attributes_prices`
+--
+ALTER TABLE `attributes_prices`
+  ADD CONSTRAINT `attributes_prices_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`);
 
 --
 -- Constraints for table `courses`
