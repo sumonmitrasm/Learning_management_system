@@ -315,8 +315,8 @@
             </div><!-- End .modal-content -->
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
-
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+<!-- Pupop add -->
+    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -345,4 +345,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}

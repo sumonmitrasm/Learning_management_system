@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Front\FrontendController;
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +84,16 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::get('delete-filtersValue/{id}',[FilterController::class,'deleteStatus'])->name('filtersValue.delete');
         //........filter lode file v-74
         Route::post('category-filters',[FilterController::class,'lodeFilter'])->name('category.filter'); 
+        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Brands<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        Route::get('brand',[BrandController::class,'view_brand'])->name('brand.views'); 
+        Route::any('add-edit-brand/{id?}',[BrandController::class,'add_edit_brand'])->name('addEdit.brand');
+        Route::post('update-brand-status',[BrandController::class,'updateBrandStatus'])->name('brand.status'); 
+        Route::get('delete-brand/{id}',[BrandController::class,'deleteStatus'])->name('brand.delete');
+        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Sliders<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        Route::get('slider',[SliderController::class,'view_slider'])->name('slider.views'); 
+        Route::any('add-edit-slider/{id?}',[SliderController::class,'add_edit_slider'])->name('addEdit.slider');
+        Route::post('update-slider-status',[SliderController::class,'updateSliderStatus'])->name('slider.status'); 
+        Route::get('delete-slider/{id}',[SliderController::class,'deleteStatus'])->name('slider.delete');
     });
 });
 Route::namespace('App\Http\Controllers\Front')->group(function(){

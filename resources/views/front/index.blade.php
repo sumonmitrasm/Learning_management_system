@@ -10,7 +10,7 @@
                     }
                 }
             }'>
-            <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-1.png);">
+            <div class="intro-slide" style="background-image: url(front/assets/images/demos/demo-13/slider/slide-1.png);">
                 <div class="container intro-content">
                     <div class="row">
                         <div class="col-auto offset-lg-3 intro-col">
@@ -31,7 +31,7 @@
                 </div><!-- End .container intro-content -->
             </div><!-- End .intro-slide -->
 
-            <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-2.jpg);">
+            <div class="intro-slide" style="background-image: url(front/assets/images/demos/demo-13/slider/slide-2.jpg);">
                 <div class="container intro-content">
                     <div class="row">
                         <div class="col-auto offset-lg-3 intro-col">
@@ -52,7 +52,7 @@
                 </div><!-- End .container intro-content -->
             </div><!-- End .intro-slide -->
 
-            <div class="intro-slide" style="background-image: url(assets/images/demos/demo-13/slider/slide-3.jpg);">
+            <div class="intro-slide" style="background-image: url(front/assets/images/demos/demo-13/slider/slide-3.jpg);">
                 <div class="container intro-content">
                     <div class="row">
                         <div class="col-auto offset-lg-3 intro-col">
