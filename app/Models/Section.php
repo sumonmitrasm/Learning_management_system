@@ -11,7 +11,7 @@ class Section extends Model
 
     public static function section()
     {
-        $getSection = Section::where('status',1)->get()->toArray();
+        $getSection = Section::with('categories')->where('status',1)->get()->toArray();
         return $getSection;
     }
     public function categories()

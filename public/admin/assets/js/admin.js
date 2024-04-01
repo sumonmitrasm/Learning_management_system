@@ -290,5 +290,54 @@ $(document).ready(function(){
 			});
 		});
 
+	//Brand status ......................
+	$(document).on("click",".updateBrandsStatus",function(){
+		var status = $(this).children("i").attr("status");
+		var value_id = $(this).attr("value_id");
+		$.ajax({
+			headers: {
+				 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			   },
+			   type:'post',
+			   url:'/admin/update-brand-status',
+			   data:{status:status,value_id:value_id},
+			   success:function(resp){
+				   if (resp['status']==0) {
+					$("#value-"+value_id).html("<i style='font-size:150%; color: #efa06b;' class='fa-solid fa-toggle-off fa-lg' status='Inactive'></i>");
+				}else{
+					if (resp['status']==1) {
+						$("#value-"+value_id).html("<i style='font-size:150%; color: #efa06b;' class='fa-solid fa-toggle-on fa-lg 'status='Active'></i>");
+					}
+				}
+			   },error:function(){
+				   alert("Error");
+			   }
+		});
+	});
+	//slider status ......................
+	$(document).on("click",".updateSliderStatus",function(){
+		var status = $(this).children("i").attr("status");
+		var value_id = $(this).attr("value_id");
+		$.ajax({
+			headers: {
+				 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			   },
+			   type:'post',
+			   url:'/admin/update-slider-status',
+			   data:{status:status,value_id:value_id},
+			   success:function(resp){
+				   if (resp['status']==0) {
+					$("#value-"+value_id).html("<i style='font-size:150%; color: #efa06b;' class='fa-solid fa-toggle-off fa-lg' status='Inactive'></i>");
+				}else{
+					if (resp['status']==1) {
+						$("#value-"+value_id).html("<i style='font-size:150%; color: #efa06b;' class='fa-solid fa-toggle-on fa-lg 'status='Active'></i>");
+					}
+				}
+			   },error:function(){
+				   alert("Error");
+			   }
+		});
+	});
+
 
 });

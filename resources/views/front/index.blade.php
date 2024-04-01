@@ -1,5 +1,8 @@
 @extends('front.layout.layout')
 @section('content')
+<?php 
+    use App\Models\Category;
+?>
 <main class="main">
     <div class="intro-slider-container">
         <div class="intro-slider owl-carousel owl-simple owl-nav-inside" data-toggle="owl" data-owl-options='{

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->string('admin_type')->nullable();
             $table->string('course_name')->nullable();
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->timestamps();
         });
     }
