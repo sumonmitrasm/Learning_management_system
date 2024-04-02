@@ -220,9 +220,9 @@ $sections = Section::section();
                                                                 <ul>
                                                                     @foreach($section['categories'] as $category)
                                                                     <li>
-                                                                        <a href="#"><strong>{{$category['category_name']}}</strong></a>
+                                                                        <a href="{{url($category['url'])}}"><strong>{{$category['category_name']}}</strong></a>
                                                                             @foreach($category['subcategories'] as $subcategory)
-                                                                                <li><a href="#">{{$subcategory['category_name']}}</a></li>
+                                                                                <li><a href="{{url($subcategory['url'])}}">{{$subcategory['category_name']}}</a></li>
                                                                             @endforeach
                                                                     </li>
                                                                     @endforeach
@@ -260,11 +260,11 @@ $sections = Section::section();
                                     <ul>
                                         @foreach($section['categories'] as $category)
                                             <li>
-                                                <a href="#">{{$category['category_name']}}</a>
+                                                <a href="{{url($category['url'])}}">{{$category['category_name']}}</a>
                                                     @if(count($category['subcategories']) > 0)
                                                         @foreach($category['subcategories'] as $subcategory)
                                                             <ul>
-                                                                <li><a href="blog-grid-2cols.html">{{$subcategory['category_name']}}</a></li>
+                                                                <li><a href="{{url($subcategory['url'])}}">{{$subcategory['category_name']}}</a></li>
                                                             </ul>
                                                         @endforeach
                                                     @endif

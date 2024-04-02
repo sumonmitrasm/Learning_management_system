@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Front\FrontendController;
+use App\Models\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,4 +99,9 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
 });
 Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::get('/', [FrontendController::class, 'home'])->name('/');
+    $catDetatis = Category::select('url')->where('status',1)->get()->pluck('url')->toArray();
+    foreach($catDetatis as $url){
+        Route::any('/'.$url,'CourseController@listing');
+        // echo "<pre>";print_r($url);die;
+    }
 });

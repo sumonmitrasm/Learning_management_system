@@ -1415,10 +1415,15 @@
 
     <div class="container electronics">
         <div class="heading heading-flex heading-border mb-3">
-            <div class="heading-left">
-                <h2 class="title">Electronics</h2><!-- End .title -->
-            </div><!-- End .heading-left -->
-
+            @foreach ($getCategory as $getCategorys)
+                @if ($getCategorys['url'] == 'electronics')
+                <div class="heading-left">
+                    <a href="{{ url('electronics') }}">
+                        <h2 class="title">Electronics</h2><!-- End .title -->
+                    </a>
+                </div>
+                @endif<!-- End .heading-left -->
+            @endforeach
            <div class="heading-right">
                 <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
                     <li class="nav-item">
@@ -1461,11 +1466,18 @@
                             }
                         }
                     }'>
+                    <?php
+                        $electronics = array_filter($product, function ($subArray) {
+                            return $subArray['url'] == 'electronics';
+                        });
+                        $electronics = array_slice($electronics, 0, 4);
+                    ?>
+                    @foreach ($electronics as $value)
                     <div class="product">
                         <figure class="product-media">
                             <span class="product-label label-new">New</span>
                             <a href="product.html">
-                                <img src="{{ asset('front/assets/images/demos/demo-13/products/product-6.jpg')}}" alt="Product image" class="product-image">
+                                <img src="{{ asset('admin/course/large/'.$value['image'])}}" alt="Product image" class="product-image">
                             </a>
 
                             <div class="product-action-vertical">
@@ -1481,11 +1493,15 @@
 
                         <div class="product-body">
                             <div class="product-cat">
-                                <a href="#">Appliances</a>
+                                @if(!empty($value['brand']['name']))
+                                <a href="#">{{$value['brand']['name']}}</a>
+                                @endif
                             </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="product.html">Neato Robotics</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $399.00
+                            <h3 class="product-title"><a href="product.html">{{$value['course_name']}}</a></h3><!-- End .product-title -->
+                            <div class="product-price" style="display: inline-block;">
+                                <del style="float: left;"> ${{$value['course_price']}}</del>&nbsp;&nbsp;&nbsp;
+                                <span style="float: right;">${{$value['course_discount']}}</span>
+                                <div style="clear: both;"></div>
                             </div><!-- End .product-price -->
                             <div class="ratings-container">
                                 <div class="ratings">
@@ -1494,159 +1510,12 @@
                                 <span class="ratings-text">( 12 Reviews )</span>
                             </div><!-- End .rating-container -->
                         </div><!-- End .product-body -->
-                    </div><!-- End .product -->
-
-                    <div class="product">
-                        <figure class="product-media">
-                            <span class="product-label label-top">Top</span>
-                            <a href="product.html">
-                                <img src="{{ asset('front/assets/images/demos/demo-13/products/product-7.jpg')}}" alt="Product image" class="product-image">
-                            </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            </div><!-- End .product-action-vertical -->
-
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                            </div><!-- End .product-action -->
-                        </figure><!-- End .product-media -->
-
-                        <div class="product-body">
-                            <div class="product-cat">
-                                <a href="#">Laptops</a>
-                            </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="product.html">MacBook Pro 13" Display, i5</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $1,199.00
-                            </div><!-- End .product-price -->
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
-                                <span class="ratings-text">( 4 Reviews )</span>
-                            </div><!-- End .rating-container -->
-                        </div><!-- End .product-body -->
-                    </div><!-- End .product -->
-
-                    <div class="product">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="{{ asset('front/assets/images/demos/demo-13/products/product-8.jpg')}}" alt="Product image" class="product-image">
-                            </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            </div><!-- End .product-action-vertical -->
-
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                            </div><!-- End .product-action -->
-                        </figure><!-- End .product-media -->
-
-                        <div class="product-body">
-                            <div class="product-cat">
-                                <a href="#">Audio</a>
-                            </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="product.html">Bose - SoundLink Bluetooth Speaker</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $79.99
-                            </div><!-- End .product-price -->
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 60%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
-                                <span class="ratings-text">( 6 Reviews )</span>
-                            </div><!-- End .rating-container -->
-                        </div><!-- End .product-body -->
-                    </div><!-- End .product -->
-
-                    <div class="product">
-                        <figure class="product-media">
-                            <span class="product-label label-new">New</span>
-                            <a href="product.html">
-                                <img src="{{ asset('front/assets/images/demos/demo-13/products/product-9.jpg')}}" alt="Product image" class="product-image">
-                            </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            </div><!-- End .product-action-vertical -->
-
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                            </div><!-- End .product-action -->
-                        </figure><!-- End .product-media -->
-
-                        <div class="product-body">
-                            <div class="product-cat">
-                                <a href="#">Tablets</a>
-                            </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="product.html">Apple - 11 Inch iPad Pro  with Wi-Fi 256GB </a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $899.99
-                            </div><!-- End .product-price -->
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
-                                <span class="ratings-text">( 4 Reviews )</span>
-                            </div><!-- End .rating-container -->
-
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #edd2c8;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #eaeaec;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                    </div><!-- End .product -->
-
-                    <div class="product">
-                        <figure class="product-media">
-                            <span class="product-label label-sale">Sale</span>
-                            <a href="product.html">
-                                <img src="{{ asset('front/assets/images/demos/demo-13/products/product-10.jpg')}}" alt="Product image" class="product-image">
-                            </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            </div><!-- End .product-action-vertical -->
-
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                            </div><!-- End .product-action -->
-                        </figure><!-- End .product-media -->
-
-                        <div class="product-body">
-                            <div class="product-cat">
-                                <a href="#">Cell Phone</a>
-                            </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="product.html">Google - Pixel 3 XL 128GB</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                <span class="new-price">$350.00</span>
-                                <span class="old-price">Was $410.00</span>
-                            </div><!-- End .product-price -->
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
-                                <span class="ratings-text">( 10 Reviews )</span>
-                            </div><!-- End .rating-container -->
-
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #eaeaec;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                    </div><!-- End .product -->
-                </div><!-- End .owl-carousel -->
+                    </div>
+                    @endforeach
+                    <!-- End .product -->
+                    <!-- End .product -->
+                </div>
+                <!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
             <div class="tab-pane p-0 fade" id="elec-featured-tab" role="tabpanel" aria-labelledby="elec-featured-link">
                 <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 

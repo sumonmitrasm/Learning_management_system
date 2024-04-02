@@ -22,4 +22,17 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\AttributesPrice');
     }
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand','brand_id');
+    }
+    public static function isProductNew($product_id){
+        $isProductNew = Course::select('id')->where('status',1)->orderby('id','Desc')->limit(3)->pluck('id')->toArray();
+        if(in_array($product_id,$isProductNew)){
+            $isProductNew = "Yes";
+        }else{
+            $isProductNew = "No";
+        }
+        return $isProductNew;
+    }
 }
