@@ -2,6 +2,7 @@
 @section('content')
 <?php 
     use App\Models\Category;
+    use App\Models\Course; 
 ?>
 <main class="main">
     <div class="intro-slider-container">
@@ -1475,7 +1476,10 @@
                     @foreach ($electronics as $value)
                     <div class="product">
                         <figure class="product-media">
-                            <span class="product-label label-new">New</span>
+                            <?php $isProductNew = Course::isProductNew($value['id']); ?>
+                            @if($isProductNew=="Yes")
+                                    <span class="product-label label-new">New</span>
+                            @endif
                             <a href="product.html">
                                 <img src="{{ asset('admin/course/large/'.$value['image'])}}" alt="Product image" class="product-image">
                             </a>

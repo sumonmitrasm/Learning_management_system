@@ -132,8 +132,8 @@
                   </li>
                   <li><a href="{{route('course.views')}}" class="slide-item">Course</a></li>
                   <li><a href="{{route('filter.views')}}" class="slide-item"> Filter</a></li>
-                  <li><a href="{{route('slider.views')}}" class="slide-item"> Sliders</a></li>
-                  <li><a href="{{route('brand.views')}}" class="slide-item"> Brands</a></li>
+                  <li><a href="{{route('sliders.views')}}" class="slide-item"> Sliders</a></li>
+                  <li><a href="{{route('brands.views')}}" class="slide-item"> Brands</a></li>
                   <li><a href="form-sizes.html" class="slide-item"> Form Element Sizes</a></li>
                   <li><a href="form-treeview.html" class="slide-item"> Form Treeview</a></li>
                </ul>

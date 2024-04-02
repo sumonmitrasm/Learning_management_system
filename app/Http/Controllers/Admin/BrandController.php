@@ -14,7 +14,7 @@ class BrandController extends Controller
         $title = "Brands Details";
         return view('admin.brand.brand')->with(['brands'=>$brands,'title'=>$title]);
     }
-    public function add_edit_brand(Request $request){
+    public function add_edit_brand(Request $request, $id=null){
         if ($id=="") {
             $title = "Add brand";
             $brand = new Brand;
