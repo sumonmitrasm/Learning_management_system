@@ -82,7 +82,7 @@
                         <div class="col-sm-12 col-md-12">
                            <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Enter brand Name</label>
-                              <input type="text" class="form-control" id="name" name="name" @if(!empty($brand['name'])) value="{{$brand['name']}}" @else value="{{old('name')}}" placeholder="Enter brand Name">
+                              <input type="text" class="form-control" id="name" name="name" @if(!empty($brand['name'])) value="{{$brand['name']}}" @else value="{{old('name')}}" @endif placeholder="Enter brand Name">
                            </div>
                            <div class="col-sm-12 col-md-12">
                             <div class="mb-3">

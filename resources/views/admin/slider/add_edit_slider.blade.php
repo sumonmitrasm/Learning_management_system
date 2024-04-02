@@ -82,7 +82,7 @@
                         <div class="col-sm-12 col-md-12">
                            <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Enter Slider Name</label>
-                              <input type="text" class="form-control" id="name" name="name" @if(!empty($slider['name'])) value="{{$slider['name']}}" @else value="{{old('name')}}" placeholder="Enter Slider Name">
+                              <input type="text" class="form-control" id="name" name="name" @if(!empty($slider['name'])) value="{{$slider['name']}}" @else value="{{old('name')}}" @endif placeholder="Enter Slider Name">
                            </div>
                            <div class="col-sm-12 col-md-12">
                             <div class="mb-3">

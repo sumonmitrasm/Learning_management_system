@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-header justify-content-between">
                             <div class="card-title">{{ $title }}</div>
-                            <div><a href="{{url('admin/add-edit-section')}}"  class="btn btn-block btn-info">Add Section</a></div>
+                            <div><a href="{{route('addEdit.brand')}}"  class="btn btn-block btn-info">Add Brand</a></div>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
