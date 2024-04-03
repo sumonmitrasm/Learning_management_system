@@ -77,6 +77,7 @@
                                                     <a href="javascript:void(0)" title="Delete Course" class="confirmDelete" module="course" moduleid="{{$value['id']}}"><i style="font-size:25px; color:red;" class="mdi mdi-file-excel-box"></i></a>
                                                     <a href="{{ route('addattribute.course', ['id' => $value['id']]) }}"><i style="font-size:25px; color:cornflowerblue" class="mdi mdi-pencil-box"></i></a>
                                                     <a title="Add price" href="{{ route('addPriceattribute.course', ['id' => $value['id']]) }}"><i style="font-size:25px; color:rgb(77, 197, 245)" class="mdi mdi-pencil-box"></i></a>
+                                                    <a title="Add Multi Image" href="{{ route('addImage.course', ['id' => $value['id']]) }}"><i style="font-size:25px; color:rgb(186, 43, 252)" class="mdi mdi-pencil-box"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

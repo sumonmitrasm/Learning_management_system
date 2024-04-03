@@ -22,6 +22,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\AttributesPrice');
     }
+    public function images(){
+        return $this->hasMany('App\Models\CoursesImage');
+    }
     public function brand()
     {
         return $this->belongsTo('App\Models\Brand','brand_id');

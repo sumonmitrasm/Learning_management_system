@@ -73,6 +73,11 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('edit-attributes-price/{id?}',[AttributeController::class,'editattributesPrice'])->name('editAttributePrice.course');
         Route::post('update-attributes-price-status',[AttributeController::class,'updateAttributesPriceStatus'])->name('attributesPrice.status'); 
         Route::get('delete-attributeprice/{id}',[AttributeController::class,'deleteattribitePrice'])->name('attributesPrice.delete');
+        //Course multi images............................>>
+        Route::any('add-image/{id?}',[AttributeController::class,'addImage'])->name('addImage.course');
+        Route::any('edit-image/{id?}',[AttributeController::class,'editImage'])->name('editImage.course');
+        Route::post('update-image-status',[AttributeController::class,'updateImageStatus'])->name('image.status'); 
+        Route::get('delete-image/{id}',[AttributeController::class,'deleteImage'])->name('image.delete');
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Filter<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('filter',[FilterController::class,'filters'])->name('filter.views');
         Route::any('add-edit-filter/{id?}',[FilterController::class,'add_edit_filter'])->name('addEdit.filter');

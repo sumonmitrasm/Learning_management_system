@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\File;
 use App\Models\Attribute;
 use App\Models\AttributesPrice;
 use App\Models\Course;
+use App\Models\CoursesImage;
 use Session;
+use Image;
 class AttributeController extends Controller
 {
     public function add_attributes(Request $request, $id){
@@ -46,7 +48,7 @@ class AttributeController extends Controller
         $title = "Attributes Details";
         $coursedata = Course::with('attribute')->select('id')->find($id);
         $attributes = Attribute::all();
-        
+        return view('admin.course.attribute')->with(['title' => $title, 'coursedata'=>$coursedata, 'attributes'=>$attributes]);
     }
 
     public function editattributes(Request $request, $id=null){
@@ -122,5 +124,37 @@ class AttributeController extends Controller
         }
         Course::where('id',$id)->delete();
         return redirect()->back();
+    }
+    public function addImage(Request $request,$id){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            foreach($data['image'] as $key => $value){
+                $attribute = new CoursesImage;
+                $attribute->course_id  = $id;
+                if (isset($data['image'][$key])) {
+                    $image_tmp = $data['image'][$key];
+                    if ($image_tmp && $image_tmp->isValid()) {
+                        $previousImage = $attribute->image;
+                        if ($previousImage && File::exists(public_path('admin/multiimage/' . $previousImage))) {
+                            File::delete(public_path('admin/multiimage/' . $previousImage));
+                        }
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $imageName = rand(111, 99999) . '.' . $extension;
+                        $medium_image_path = 'admin/multiimage/' . $imageName;
+                        Image::make($image_tmp)->save($medium_image_path);
+                        $attribute->image = $imageName;
+                    }
+                } 
+                $attribute->status = 1;
+                $attribute->save();
+            }
+            $message = 'New Additional Image has been uploaded successfully!';
+            Session::flash('success_message',$message);
+            return redirect()->back();
+        }
+        $title = "Image Details";
+        $coursedata = Course::with('images')->select('id')->find($id);
+        $attributes = Attribute::all();
+        return view('admin.course.attribute_image')->with(['title' => $title, 'coursedata'=>$coursedata, 'attributes'=>$attributes]);
     }
 }
