@@ -172,6 +172,16 @@
                             </div>
                          </div>
                          <div class="col-sm-12 col-md-12">
+                           <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Select Brand</label>
+                              <select id="brand_id" name="brand_id" class="form-control">
+                                 @foreach($brand as $brands)
+                                    <option value="{{$brands['id']}}" @if(!empty($course['brand_id']) && $course['brand_id']==$brands['id']) selected="" @endif>{{$brands['name']}}</option>
+                                 @endforeach
+                              </select>
+                           </div>
+                        </div>
+                         <div class="col-sm-12 col-md-12">
                             <div class="mb-3">
                                <label for="exampleInputEmail1" class="form-label">Course Video</label>
                                <input type="text" class="form-control" id="course_video" name="course_video" @if(!empty($course['course_video'])) value="{{$course['course_video']}}" @else value="{{old('course_video')}}" @endif placeholder="Enter course_video">

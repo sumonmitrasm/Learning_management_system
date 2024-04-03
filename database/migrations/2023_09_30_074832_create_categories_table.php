@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('parent_id');
             $table->integer('section_id');
             $table->string('category_name');
+            $table->string('category_discount')->nullable();
             $table->text('description')->nullable();
             $table->integer('position')->nullable();
             $table->string('url');

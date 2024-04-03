@@ -84,6 +84,7 @@ class CourseController extends Controller
                 $course->course_code = $data['course_code'];
                 $course->course_price = $data['course_price'];
                 $course->course_discount = $data['course_discount'];
+                $course->brand_id = $data['brand_id'];
                 $course->course_video = $data['course_video'];
                 $course->meta_title = $data['meta_title'];
                 $course->description = $data['description'];
@@ -105,7 +106,8 @@ class CourseController extends Controller
         $course = Course::find($id);
         //dd($course);die;
         $title = "Add edit Course";
-        return view('admin.course.add_edit_course')->with(['course'=>$course,'title'=>$title,'categories'=>$categories]);
+        $brand = Brand::get()->toArray();
+        return view('admin.course.add_edit_course')->with(['course'=>$course,'title'=>$title,'categories'=>$categories,'brand'=>$brand]);
     }
 
     public function updateCourseStatus(Request $request){

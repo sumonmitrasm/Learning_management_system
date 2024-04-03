@@ -103,5 +103,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     foreach($catDetatis as $url){
         Route::any('/'.$url,'CourseController@listing');
         // echo "<pre>";print_r($url);die;
+        Route::get('/'.$url.'/{id}'.'/{slug}','CourseController@details');
     }
+
 });

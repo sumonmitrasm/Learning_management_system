@@ -35,4 +35,16 @@ class Course extends Model
         }
         return $isProductNew;
     }
+    public static function getDiscountPrice($product_id){
+        $productPrice = Product::select('course_price','course_discount','id','category_id')->where('id',$product_id)->first()->toarray();
+        $categoryDiscount = Category::select('category_discount','id')->where('id',$productPrice['category_id'])->first()->toarray();
+        if($productPrice['course_discount']>0){
+            $discounted_price = $productPrice['course_price'] - ($productPrice['course_price']*$productPrice['course_discount']/100);
+        }elseif($categoryDiscount['category_discount']>0){
+            $discounted_price = $productPrice['course_price'] - ($productPrice['course_price']*$categoryDiscount['category_discount']/100);
+        }else{
+            $discounted_price = 0;
+        }
+        return $discounted_price;
+    }
 }

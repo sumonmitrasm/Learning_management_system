@@ -24,4 +24,8 @@ class CourseController extends Controller
             abort(404);
         }
     }
+    public function details($id, $slug){
+        $politicsDetails = Course::with('brand','category','attributePrice','attribute')->where('status',1)->find($id);
+        return view('front.courses.details');
+    }
 }
