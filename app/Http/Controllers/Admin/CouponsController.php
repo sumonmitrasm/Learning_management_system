@@ -74,7 +74,7 @@ class CouponsController extends Controller
             }else{
                 $coupon_code = $data['coupon_code'];
             }
-            
+
             $coupon->coupon_option = $data['coupon_option'];
             $coupon->coupon_code = $coupon_code;
             $coupon->categories = $categories;
@@ -100,5 +100,19 @@ class CouponsController extends Controller
          'users'=>$users,'brands'=>$brands,
          'selBrands'=>$selBrands,'selUsers'=>$selUsers,
         'selCats'=>$selCats]);
+    }
+    public function updateCouponsStatus(Request $request)
+    {
+    	if ($request->ajax()) {
+    		$data =  $request->all();
+    		//echo "<pre>"; print_r($data); die;
+    		if ($data['status']=="Active") {
+    			$status = 0;
+    		}else{
+    			$status = 1;
+    		}
+    		Coupon::where('id',$data['value_id'])->update(['status'=>$status]);
+    		return response()->json(['status'=>$status, 'value_id' =>$data['value_id']]);
+    	}
     }
 }

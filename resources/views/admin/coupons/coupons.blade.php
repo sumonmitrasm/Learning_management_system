@@ -67,18 +67,20 @@
                                             <tr>
                                                 <td>{{ $index +1 }}</td>
                                                 <td>{{$value['coupon_option']}}</td>
-                                                <td>{{ $category['section']['name'] }}</td>
-                                                <td>{{ $category['category_name'] }}</td>
+                                                <td>{{$value['coupon_code']}}</td>
+                                                <td>{{$value['coupon_type']}}</td>
+                                                <td>{{$value['amount']}}%</td>
+                                                <td>{{$value['expiry_date']}}</td>
                                                 <td>
-                                                    @if($category['status'] == 1)
-                                                    <a class="updatecategoryStatus" id="category-{{$category['id']}}" category_id="{{$category['id']}}" href="javascript:void(0)"><i style="font-size:150%; color: #efa06b;" class="fa-solid fa-toggle-on fa-lg"  status="Active"></i></a>
+                                                    @if($value['status'] == 1)
+                                                    <a class="updateCouponStatus" id="value-{{$value['id']}}" value_id="{{$value['id']}}" href="javascript:void(0)"><i style="font-size:150%; color: #efa06b;" class="fa-solid fa-toggle-on fa-lg"  status="Active"></i></a>
                                                     @else
-                                                    <a class="updatecategoryStatus" id="category-{{$category['id']}}" category_id="{{$category['id']}}" href="javascript:void(0)"><i style="font-size:150%; color: #efa06b;" class="fa-solid fa-toggle-off fa-lg" status="Inactive"></i></a>
+                                                    <a class="updateCouponStatus" id="value-{{$value['id']}}" value_id="{{$value['id']}}" href="javascript:void(0)"><i style="font-size:150%; color: #efa06b;" class="fa-solid fa-toggle-off fa-lg" status="Inactive"></i></a>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{url('admin/add-edit-category/'.$category['id'])}}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
-                                                    <a href="javascript:void(0)" title="Delete Category" class="confirmDelete" module="category" moduleid="{{$category['id']}}"><i style="font-size:25px; color:red;" class="mdi mdi-file-excel-box"></i></a>
+                                                    <a href="{{url('addEdit.coupon',['id'=>$value['id']])}}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete Coupon" class="confirmDelete" module="coupon" moduleid="{{$value['id']}}"><i style="font-size:25px; color:red;" class="mdi mdi-file-excel-box"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach
