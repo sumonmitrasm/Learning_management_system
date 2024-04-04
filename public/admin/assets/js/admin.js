@@ -339,5 +339,13 @@ $(document).ready(function(){
 		});
 	});
 
+	//coupon  selector....................................................................122
+	$("#ManualCoupon").click(function(){
+		$("#couponFild").show();
+	});
+	$("#AutomaticCoupon").click(function(){
+		$("#couponFild").hide();
+	});
+
 
 });

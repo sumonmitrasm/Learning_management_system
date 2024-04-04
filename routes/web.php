@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Front\FrontendController;
+
 use App\Models\Category;
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +102,15 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::any('add-edit-slider/{id?}',[SliderController::class,'add_edit_slider'])->name('addEdit.slider');
         Route::post('update-slider-status',[SliderController::class,'updateSliderStatus'])->name('slider.status'); 
         Route::get('delete-slider/{id}',[SliderController::class,'deleteStatus'])->name('slider.delete');
+        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Coupons<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        Route::get('coupons',[CouponsController::class,'coupons'])->name('view.coupon');
+        Route::get('add-edit-coupon/{id?}',[CouponsController::class,'addEditCoupon'])->name('addEdit.coupon');
+        Route::get('update-coupons-status',[CouponsController::class,'updateCouponsStatus'])->name('update.coupon');
+        Route::get('delete-coupon/{id}',[CouponsController::class,'deleteCoupon'])->name('delete.coupon');
+        // Route::get('coupons', 'CouponsController@coupons');
+		// Route::post('update-coupons-status', 'CouponsController@updateCouponsStatus');
+		// Route::match(['get','post'],'add-edit-coupon/{id?}', 'CouponsController@addEditCoupon');
+		Route::get('delete-coupon/{id}', 'CouponsController@deleteCoupon');
     });
 });
 Route::namespace('App\Http\Controllers\Front')->group(function(){
