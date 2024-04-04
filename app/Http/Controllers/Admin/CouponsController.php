@@ -115,4 +115,11 @@ class CouponsController extends Controller
     		return response()->json(['status'=>$status, 'value_id' =>$data['value_id']]);
     	}
     }
+    public function deleteCoupon($id)
+    {
+        Coupon::where('id',$id)->delete();
+        $message = 'Coupon has been deleted successfully!';
+        Session::flash('success_message',$message);
+        return redirect()->back();
+    }
 }

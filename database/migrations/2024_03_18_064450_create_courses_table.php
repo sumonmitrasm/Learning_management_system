@@ -31,10 +31,15 @@ return new class extends Migration
             $table->string('meta_keywords')->nullable();
             $table->enum('is_featured',['No','Yes']);
             $table->tinyInteger('status')->default(1);
-            $table->foreign('section_id')->references('id')->on('sections');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('admin_id')->references('id')->on('admins');
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+
+            // $table->foreign('section_id')->references('id')->on('sections');
+            // $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('admin_id')->references('id')->on('admins');
+            // $table->foreign('brand_id')->references('id')->on('brands');
             $table->timestamps();
         });
     }

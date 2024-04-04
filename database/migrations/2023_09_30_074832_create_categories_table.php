@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->integer('parent_id');
-            $table->integer('section_id');
+            $table->unsignedBigInteger('section_id');
             $table->string('category_name');
             $table->string('category_discount')->nullable();
             $table->text('description')->nullable();
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('meta_keywords')->nullable();
             $table->string('meta_robot')->nullable();
             $table->tinyInteger('status');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

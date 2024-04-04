@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock')->nullable();
             $table->string('sku')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }
