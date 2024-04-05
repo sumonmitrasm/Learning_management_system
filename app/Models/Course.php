@@ -39,7 +39,7 @@ class Course extends Model
         return $isProductNew;
     }
     public static function getDiscountPrice($product_id){
-        $productPrice = Product::select('course_price','course_discount','id','category_id')->where('id',$product_id)->first()->toarray();
+        $productPrice = Course::select('course_price','course_discount','id','category_id')->where('id',$product_id)->first()->toarray();
         $categoryDiscount = Category::select('category_discount','id')->where('id',$productPrice['category_id'])->first()->toarray();
         if($productPrice['course_discount']>0){
             $discounted_price = $productPrice['course_price'] - ($productPrice['course_price']*$productPrice['course_discount']/100);
@@ -49,5 +49,25 @@ class Course extends Model
             $discounted_price = 0;
         }
         return $discounted_price;
+    }
+
+    public static function getCourseattrPrtice($course_id,$size){
+        $proAttrPrice = AttributesPrice::where(['course_id'=>$course_id,'size'=>$size])->first()->toArray();
+        //return  $proAttrPrice;
+        $proPrice = Course::select('course_price','course_discount','category_id')->where('id',$course_id)->first()->toArray();
+        //return  $proPrice;
+        $catDiscount = Category::select('category_discount')->where('id',$proPrice['category_id'])->first()->toArray();
+        //return  $catDiscount;
+        if($proAttrPrice>0){
+            $final_price = $proAttrPrice['price'] - ($proAttrPrice['price']*$proPrice['course_discount']/100);
+            $discount = $proAttrPrice['price'] - $final_price;
+        }elseif ($catDiscount['category_discount']>0) {
+            $final_price = $proAttrPrice['price'] - ($proAttrPrice['price']*$catDiscount['category_discount']/100);
+            $discount = $proAttrPrice['price'] - $final_price;
+        }else{
+            $final_price = $proAttrPrice['price'];
+            $discount = 0;
+        }
+        return array('course_price'=>$proAttrPrice['price'],'final_price'=> $final_price,'discount'=>$discount);
     }
 }

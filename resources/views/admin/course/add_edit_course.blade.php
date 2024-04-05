@@ -194,7 +194,18 @@
                                <p id="course-description"></p>
                             </div>
                          </div>
-
+                         <div class="col-sm-12 col-md-12">
+                           <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Group Code</label>
+                              <input type="text" class="form-control" id="group_code" name="group_code" @if(!empty($course['group_code'])) value="{{$course['group_code']}}" @else value="{{old('group_code')}}" @endif placeholder="Enter Group Code">
+                           </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12">
+                           <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Color</label>
+                              <input type="text" class="form-control" id="color" name="color" @if(!empty($course['color'])) value="{{$course['color']}}" @else value="{{old('color')}}" @endif placeholder="Enter Color">
+                           </div>
+                        </div>
                          <div class="col-sm-12 col-md-12">
                             <div class="mb-3">
                                 <label class="custom-control custom-checkbox">

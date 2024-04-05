@@ -25,7 +25,20 @@ class CourseController extends Controller
         }
     }
     public function details($id, $slug){
-        $politicsDetails = Course::with('brand','category','attributePrice','attribute')->where('status',1)->find($id);
-        return view('front.courses.details');
+        $productDetails = Course::with('brand','category','attributePrice','attribute','images')->where('status',1)->find($id);
+        $groupProduct = array();
+         if (!empty($productDetails['group_code'])) {
+           $groupProduct = Course::select('id','product_image','url','id','slug')->where('id','!=',$id)->where(['group_code'=>$productDetails['group_code'],'status'=>1])->get()->toArray();
+         }
+        return view('front.courses.details')->with(['productDetails'=>$productDetails,'groupProduct'=>$groupProduct]);
+    }
+
+    public function getCoursePrice(Request $request){
+        if ($request->ajax()) {
+            $data = $request->all();
+            //echo "<pre>";print_r($data);die;
+            $getCourseattrPrtice = Course::getCourseattrPrtice($data['course_id'],$data['size']);
+            return $getCourseattrPrtice;
+        }
     }
 }

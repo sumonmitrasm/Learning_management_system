@@ -1,5 +1,6 @@
 @extends('front.layout.layout')
 @section('content')
+<?php use App\Models\Course;?>
 <main class="main">
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container d-flex align-items-center">
@@ -31,7 +32,7 @@
                         <div class="product-gallery product-gallery-vertical">
                             <div class="row">
                                 <figure class="product-main-image">
-                                    <img id="product-zoom" src="{{ asset('front/assets/images/products/single/1.jpg')}}" data-zoom-image="{{ asset('front/assets/images/products/single/1-big.jpg')}}" alt="product image">
+                                    <img id="product-zoom" src="{{asset('admin/course/large/'.$productDetails['image'])}}" data-zoom-image="{{asset('admin/course/large/'.$productDetails['image'])}}" alt="product image">
 
                                     <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                         <i class="icon-arrows"></i>
@@ -39,21 +40,14 @@
                                 </figure><!-- End .product-main-image -->
 
                                 <div id="product-zoom-gallery" class="product-image-gallery">
-                                    <a class="product-gallery-item active" href="#" data-image="{{ asset('front/assets/images/products/single/1.jpg')}}" data-zoom-image="{{ asset('front/assets/images/products/single/1-big.jpg')}}">
-                                        <img src="{{ asset('front/assets/images/products/single/1-small.jpg')}}" alt="product side">
+                                    <a class="product-gallery-item active" href="#" data-image="{{asset('admin/course/large/'.$productDetails['image'])}}" data-zoom-image="{{asset('admin/course/large/'.$productDetails['image'])}}">
+                                        <img src="{{asset('admin/course/large/'.$productDetails['image'])}}" alt="product side">
                                     </a>
-
-                                    <a class="product-gallery-item" href="#" data-image="{{ asset('front/assets/images/products/single/2.jpg')}}" data-zoom-image="{{ asset('front/assets/images/products/single/2-big.jpg')}}">
-                                        <img src="{{ asset('front/assets/images/products/single/2-small.jpg')}}" alt="product cross">
+                                    @foreach($productDetails['images'] as $image)
+                                    <a class="product-gallery-item" href="#" data-image="{{asset('admin/multiimage/'.$image['image'])}}" data-zoom-image="{{asset('admin/multiimage/'.$image['image'])}}">
+                                        <img src="{{asset('admin/multiimage/'.$image['image'])}}" alt="product cross">
                                     </a>
-
-                                    <a class="product-gallery-item" href="#" data-image="{{ asset('front/assets/images/products/single/3.jpg')}}" data-zoom-image="{{ asset('front/assets/images/products/single/3-big.jpg')}}">
-                                        <img src="{{ asset('front/assets/images/products/single/3-small.jpg')}}" alt="product with model">
-                                    </a>
-
-                                    <a class="product-gallery-item" href="#" data-image="{{ asset('front/assets/images/products/single/4.jpg')}}" data-zoom-image="{{ asset('front/assets/images/products/single/4-big.jpg')}}">
-                                        <img src="{{ asset('front/assets/images/products/single/4-small.jpg')}}" alt="product back">
-                                    </a>
+                                    @endforeach
                                 </div><!-- End .product-image-gallery -->
                             </div><!-- End .row -->
                         </div><!-- End .product-gallery -->
@@ -61,7 +55,7 @@
 
                     <div class="col-md-6">
                         <div class="product-details">
-                            <h1 class="product-title">Dark yellow lace cut out swing dress</h1><!-- End .product-title -->
+                            <h1 class="product-title">{{$productDetails['course_name']}}</h1><!-- End .product-title -->
 
                             <div class="ratings-container">
                                 <div class="ratings">
@@ -70,36 +64,50 @@
                                 <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
                             </div><!-- End .rating-container -->
 
-                            <div class="product-price">
+                            {{-- <div class="product-price">
                                 $84.00
-                            </div><!-- End .product-price -->
-
+                            </div><!-- End .product-price --> --}}
+                            <?php $getDiscountPrice = Course::getDiscountPrice($productDetails['id']);?>
+                            <span class="getAttributePrice">
+                                @if($getDiscountPrice>0)
+                                <div class="product-price">
+                                    <span>${{$getDiscountPrice}}</span>
+                                </div>
+                                <div class="original-price">
+                                   <span>Original Price</span>
+                                    <del> ${{$productDetails['course_price']}}</del> 
+                                </div>
+                                @else
+                                    <div class="product-price">
+                                        ${{$productDetails['course_price']}} 
+                                    </div>
+                                @endif
+                            </span>
                             <div class="product-content">
-                                <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus. </p>
+                                <p>{!!$productDetails['description']!!}</p>
                             </div><!-- End .product-content -->
 
                             <div class="details-filter-row details-row-size">
-                                <label>Color:</label>
-
-                                <div class="product-nav product-nav-thumbs">
-                                    <a href="#" class="active">
-                                        <img src="{{ asset('front/assets/images/products/single/1-thumb.jpg')}}" alt="product desc">
-                                    </a>
-                                    <a href="#">
-                                        <img src="{{ asset('front/assets/images/products/single/2-thumb.jpg')}}" alt="product desc">
-                                    </a>
-                                </div><!-- End .product-nav -->
+                                <label>Color:&nbsp;{{$productDetails['color']}}</label>
+                                @if(count($groupProduct)>0)
+                                    <div class="product-nav product-nav-thumbs">
+                                        @foreach($groupProduct as $product)
+                                        <a href="{{ url($product['url'].'/'.$product['id'].'/'.$product['slug']) }}" class="active">
+                                            <img src="{{asset('admin/course/large/'.$product['image'])}}" alt="product desc">
+                                        </a>
+                                        @endforeach
+                                    </div>
+                                @endif<!-- End .product-nav -->
                             </div><!-- End .details-filter-row -->
 
                             <div class="details-filter-row details-row-size">
                                 <label for="size">Size:</label>
                                 <div class="select-custom">
-                                    <select name="size" id="size" class="form-control">
-                                        <option value="#" selected="selected">Select a size</option>
-                                        <option value="s">Small</option>
-                                        <option value="m">Medium</option>
-                                        <option value="l">Large</option>
-                                        <option value="xl">Extra Large</option>
+                                    <select required name="size" id="getPrice" course-id="{{$productDetails['id']}}" class="form-control">
+                                        <option value="">Select a size</option>
+                                        @foreach($productDetails['attributePrice'] as $attribute)
+                                            <option value="{{$attribute['size']}}">{{$attribute['size']}}</option>
+                                        @endforeach
                                     </select>
                                 </div><!-- End .select-custom -->
 
@@ -109,7 +117,7 @@
                             <div class="details-filter-row details-row-size">
                                 <label for="qty">Qty:</label>
                                 <div class="product-details-quantity">
-                                    <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                    <input type="number" id="qty" name="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                                 </div><!-- End .product-details-quantity -->
                             </div><!-- End .details-filter-row -->
 

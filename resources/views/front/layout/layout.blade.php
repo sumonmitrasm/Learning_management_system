@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="{{ url('front/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('front/assets/css/skins/skin-demo-13.css') }}">
     <link rel="stylesheet" href="{{ url('front/assets/css/demos/demo-13.css') }}">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -60,6 +62,8 @@
     <!-- Main JS File -->
     <script src="{{ url('front/assets/js/main.js') }}"></script>
     <script src="{{ url('front/assets/js/demos/demo-13.js') }}"></script>
+     <!-- Main JS File -->
+    <script src="{{ url('front/assets/js/custom.js') }}"></script>
 </body>
 
 
