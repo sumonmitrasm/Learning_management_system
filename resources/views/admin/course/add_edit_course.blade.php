@@ -206,6 +206,12 @@
                               <input type="text" class="form-control" id="color" name="color" @if(!empty($course['color'])) value="{{$course['color']}}" @else value="{{old('color')}}" @endif placeholder="Enter Color">
                            </div>
                         </div>
+                        <div class="col-sm-12 col-md-12">
+                           <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">Product Weight</label>
+                              <input type="text" class="form-control" id="product_weight" name="product_weight" @if(!empty($course['product_weight'])) value="{{$course['product_weight']}}" @else value="{{old('product_weight')}}" @endif placeholder="Enter Product Weight">
+                           </div>
+                        </div>
                          <div class="col-sm-12 col-md-12">
                             <div class="mb-3">
                                 <label class="custom-control custom-checkbox">

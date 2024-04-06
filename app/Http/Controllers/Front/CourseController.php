@@ -13,6 +13,7 @@ use Session;
 use Auth;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Route;
+use App\Models\AttributesPrice;
 class CourseController extends Controller
 {
     public function listing(){
@@ -47,11 +48,30 @@ class CourseController extends Controller
     public function addToCart(Request $request){
         if ($request->isMethod('post')) {
             $data = $request->all();
-            //create session id........................
+            //product quantity is not or available......................
+            $getProductStock = AttributesPrice::getProductStock($data['course_id'],$data['size']);
+            if($getProductStock<$data['quantity']){
+                return redirect()->back()->with('error_message','Required quantity is not available');
+            }
+            //product allready exist in cart......................
+            if(Auth::check()){
+                $user_id = Auth::user()->id;
+                $countProducts = Cart::where(['course_id'=>$data['course_id'],'size'=>$data['size'],'user_id'=>$user_id])->count();
+            }else{
+                $session_id = Session::get('session_id');
+                $countProducts = Cart::where(['course_id'=>$data['course_id'],'size'=>$data['size'],'session_id'=>$session_id])->count();
+            }
+            if($countProducts>0){
+                return redirect()->back()->with('error_message','Product already exists in cart');
+            }
+            //create session id...................................
             $session_id = Session::get('session_id');
             if(empty($session_id)){
                 $session_id = Session::getId();
                 Session::put('session_id',$session_id);
+            }
+            if($data['quantity']<=0){
+                $data['quantity']=1;
             }
             $item = new Cart;
             $item->course_id = $data['course_id'];
@@ -67,6 +87,8 @@ class CourseController extends Controller
     }
 
     public function cart(){
-        return view('front.courses.cart');
+        $getCartItems = Cart::getCartItems();
+        //dd($getCartItems);
+        return view('front.courses.cart')->with(['getCartItems'=>$getCartItems]);
     }
 }

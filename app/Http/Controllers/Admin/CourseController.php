@@ -90,6 +90,7 @@ class CourseController extends Controller
                 $course->description = $data['description'];
                 $course->group_code = $data['group_code'];
                 $course->color = $data['color'];
+                $course->product_weight = $data['product_weight'];
                 $course->meta_title = $data['meta_title'];
                 $course->meta_keywords = $data['meta_keywords'];
                 if (!empty($data['is_featured'])) {

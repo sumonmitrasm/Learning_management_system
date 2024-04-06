@@ -31,8 +31,10 @@
     <link rel="stylesheet" href="{{ url('front/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('front/assets/css/skins/skin-demo-13.css') }}">
     <link rel="stylesheet" href="{{ url('front/assets/css/demos/demo-13.css') }}">
-
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--sweetallert2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

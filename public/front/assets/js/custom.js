@@ -29,4 +29,37 @@ $(document).ready(function(){
 			}
         });
 	});
+
+    //........................................
+    $(document).on('change','.updateCartItem',function(){
+        var quantity = $(this).val();
+        var cartid = $(this).data('cartid');
+        alert(cartid);die;  //incomplete
+        // Perform validation if needed
+        if(quantity < 1) {
+            alert("Item quantity must be at least 1!!");
+            return false;
+        }
+    
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data:{"cartid":cartid,"qty":quantity},
+            url:'/cart/update',
+            type:'post',
+            success:function(resp){
+                $(".totalCartItems").html(resp.totalCartItems);
+                if (resp.status==false) {
+                    alert(resp.message);
+                }
+                $("#appendCartItems").html(resp.view);
+                $("#appendHeaderCartItems").html(resp.headerview);
+            },
+            error:function(){
+                alert("Error");
+            }
+        });
+    });
+    
 });

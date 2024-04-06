@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('course_video')->nullable();
             $table->string('description')->nullable();
             $table->string('color')->nullable();
+            $table->string('product_weight')->nullable();
             $table->string('group_code')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
