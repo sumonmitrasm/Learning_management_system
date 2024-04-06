@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Section;
-use Session;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use DB;
+use Session;
+use Auth;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Route;
 class CourseController extends Controller
 {
     public function listing(){
@@ -40,5 +43,30 @@ class CourseController extends Controller
             $getCourseattrPrtice = Course::getCourseattrPrtice($data['course_id'],$data['size']);
             return $getCourseattrPrtice;
         }
+    }
+    public function addToCart(Request $request){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            //create session id........................
+            $session_id = Session::get('session_id');
+            if(empty($session_id)){
+                $session_id = Session::getId();
+                Session::put('session_id',$session_id);
+            }
+            $item = new Cart;
+            $item->course_id = $data['course_id'];
+            $item->session_id = $session_id;
+            // $item->user_id  = 0;
+            $item->size = $data['size'];
+            $item->quantity = $data['quantity'];
+            $item->save();
+            $message = "Product has been added in Cart";
+            Session::flash('success_message',$message);
+            return redirect('cart');
+        }
+    }
+
+    public function cart(){
+        return view('front.courses.cart');
     }
 }

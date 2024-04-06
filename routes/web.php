@@ -122,4 +122,6 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::get('/'.$url.'/{id}'.'/{slug}','CourseController@details');
     }
     Route::any('/get-course-price','CourseController@getCoursePrice');
+    Route::post('cart/add','CourseController@addToCart');
+    Route::get('/cart','CourseController@cart');
 });
