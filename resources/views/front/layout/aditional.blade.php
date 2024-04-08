@@ -223,15 +223,18 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form action="#">
+                                    <p id="login-error"></p>
+                                    <form  id="loginForm" action="javascript:;" method="post">@csrf
                                         <div class="form-group">
                                             <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                            <input type="text" class="form-control" id="email" name="email">
+                                            <p id="login-email"></p>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
                                             <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                            <input type="password" class="form-control" id="password" name="password">
+                                            <p id="login-password"></p>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -267,17 +270,60 @@
                                     </div><!-- End .form-choice -->
                                 </div><!-- .End .tab-pane -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <form action="#">
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        @foreach ($errors->all() as $error)
+                                        <strong>Error Message: </strong>{{ $error }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if(Session::has('error_message'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Error Message: </strong>{{Session::get('error_message')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+                                    @if(Session::has('success_message'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Success Message: </strong>{{Session::get('success_message')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                                <p id="register-confirm"></p>
+                                <form  id="registerForm" action="javascript:;" method="post">@csrf
+                                        <div class="form-group">
+                                            <label for="register-email">Your Name *</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                            <p id="register-name"></p>
+                                        </div>
                                         <div class="form-group">
                                             <label for="register-email">Your email address *</label>
-                                            <input type="email" class="form-control" id="register-email" name="register-email" required>
+                                            <input type="email" class="form-control" id="email" name="email">
+                                            <p id="register-email"></p>
                                         </div><!-- End .form-group -->
-
+                                        <div class="form-group">
+                                            <label for="register-email">Phone Number *</label>
+                                            <input type="text" class="form-control" id="mobile" name="mobile">
+                                            <p id="register-mobile"></p>
+                                        </div>
                                         <div class="form-group">
                                             <label for="register-password">Password *</label>
-                                            <input type="password" class="form-control" id="register-password" name="register-password" required>
+                                            <input type="password" class="form-control" id="password" name="password">
+                                            <p id="register-password"></p>
                                         </div><!-- End .form-group -->
-
+                                        <div class="form-group">
+                                            <label for="register-password">Confirm Password *</label>
+                                            <input type="password" class="form-control" id="cpassword" name="cpassword">
+                                           
+                                        </div><!-- End .form-group -->
                                         <div class="form-footer">
                                             <button type="submit" class="btn btn-outline-primary-2">
                                                 <span>SIGN UP</span>

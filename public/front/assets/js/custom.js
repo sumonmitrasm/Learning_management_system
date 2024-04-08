@@ -61,5 +61,79 @@ $(document).ready(function(){
             }
         });
     });
+
+    //register in fornt..............
+    $("#registerForm").submit(function(){
+        var formdata = $(this).serialize();
+        //alert(formdata);die;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+            url:"/user/register",
+            type:"POST",
+            data:formdata,
+            success:function(resp){
+                //alert(resp);die;
+                if(resp.type=="error"){
+                    $.each(resp.errors,function(i,error){
+                        $("#register-"+i).attr('style','color:red');
+                        $("#register-"+i).html(error);
+                        setTimeout(function(){
+                            $("#register-"+i).css({
+                                'display':'none'
+                            });
+                        },7000);
+                    });
+                }else if(resp.type=="success"){
+                    $("#register-confirm").attr('style','color:green');
+                    $("#register-confirm").html(resp.message);
+                    // window.location.href = resp.url;
+                }
+            },error:function(){
+                alert("Error");
+            }
+        });
+    });
+
+    $("#loginForm").submit(function(){
+        var formdata = $(this).serialize();
+        //alert(formdata);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+            url:"/user/login",
+            type:"POST",
+            data:formdata,
+            success:function(resp){
+                //alert(resp);die; //next.....107
+                if(resp.type=="error"){
+                    $.each(resp.errors,function(i,error){
+                        $("#login-"+i).attr('style','color:red');
+                        $("#login-"+i).html(error);
+                        setTimeout(function(){
+                            $("#login-"+i).css({
+                                'display':'none'
+                            });
+                        },4000);
+                    });
+                }else if(resp.type=="incorrect"){
+                    //alert(resp.message); //110v
+                    $("#login-error").attr('style','color:red');
+                    $("#login-error").html(resp.message);
+                }else if(resp.type=="inactive"){
+                    //alert(resp.message); //110v
+                    $("#login-error").attr('style','color:red');
+                    $("#login-error").html(resp.message);
+                }
+                else if(resp.type=="success"){
+                    window.location.href = resp.url;
+                }
+            },error:function(){
+                alert("Error");
+            }
+        });
+    });
     
 });
