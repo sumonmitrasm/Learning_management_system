@@ -49,8 +49,13 @@ class UserController extends Controller
                 $message->to($email)->subject('Please Confirm your account');
             });
             //redirect back with success message
-                $redirectTo = url('user/login-register');
-                return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>'Please confirm your email to active your account']);
+                $redirectTo = url('/user-register');
+                // return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>'Please confirm your email to active your account']);
+                return response()->json([
+                    'type' => 'success',
+                    'url' => $redirectTo,
+                    'message' => 'Please confirm your email to activate your account'
+                ]);                
 
             //send register sms ........................................................109
             // $message = "Dear Customer, You are successfully login the site";
@@ -60,6 +65,38 @@ class UserController extends Controller
              return response()->json(['type'=>'error','errors'=>$validator->messages()]);
         }
             
+        }
+    }
+    public function confirmAccount($email)
+    {
+         //echo "hi";die;
+        Session::forget('error_message');
+        Session::forget('success_message');
+        //echo $email = base64_decode($email);
+        $email = base64_decode($email);
+        //check user email exists
+        $userCount = User::where('email',$email)->count();
+        if ($userCount>0) {
+            // User email is already activeed or not
+            $userDetails = User::where('email',$email)->first();
+            if ($userDetails->status == 1) {
+                $message = "Your Email account is already activeed";
+                Session::put('error_message',$message);
+                return redirect('/cart');
+            }else{
+                //update status 
+                User::where('email',$email)->update(['status'=>1]);
+                //send mail on website......................................112
+                $messageData = ['name'=>$userDetails['name'],'mobile'=>$userDetails['mobile'],'email'=>$email];
+                Mail::send('emails.register',$messageData,function($message) use($email){$message->to($email)->subject('Welcome to sumons website');
+
+                });
+                $message = "Your Email account is activeed";
+                Session::put('success_message',$message);
+                return redirect('/cart');
+            }
+        }else{
+            abort(404);
         }
     }
 

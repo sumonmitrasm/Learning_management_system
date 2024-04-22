@@ -70,7 +70,7 @@ $(document).ready(function(){
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
-            url:"/user/register",
+            url:"/user-register",
             type:"POST",
             data:formdata,
             success:function(resp){

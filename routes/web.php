@@ -125,7 +125,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::any('/get-course-price','CourseController@getCoursePrice');
     Route::post('cart/add','CourseController@addToCart');
     Route::get('/cart','CourseController@cart');
-    Route::post('user/register',[UserController::class,'userRegister'])->name('register.user');
+    Route::any('/user-register',[UserController::class,'userRegister'])->name('register.user');
     Route::post('/user/login',[UserController::class,'userLogin'])->name('loginRegister.user');
     Route::any('confirm/{code}',[UserController::class,'confirmAccount'])->name('confirm.user');
 });
