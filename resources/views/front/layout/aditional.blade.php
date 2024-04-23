@@ -322,7 +322,6 @@
                                         <div class="form-group">
                                             <label for="register-password">Confirm Password *</label>
                                             <input type="password" class="form-control" id="cpassword" name="cpassword">
-                                           
                                         </div><!-- End .form-group -->
                                         <div class="form-footer">
                                             <button type="submit" class="btn btn-outline-primary-2">

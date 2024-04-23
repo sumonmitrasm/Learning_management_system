@@ -91,4 +91,8 @@ class CourseController extends Controller
         //dd($getCartItems);
         return view('front.courses.cart')->with(['getCartItems'=>$getCartItems]);
     }
+
+    public function checkout(){
+        echo "hi";die;
+    }
 }

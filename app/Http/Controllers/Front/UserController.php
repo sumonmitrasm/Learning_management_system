@@ -100,6 +100,10 @@ class UserController extends Controller
         }
     }
 
+    public function loginRegister(){
+        return view('front.login.login');
+    }
+
     public function userLogin(Request $request){
         if($request->ajax()){
             $data = $request->all();
@@ -114,7 +118,7 @@ class UserController extends Controller
                         Auth::logout();
                         return response()->json(['type'=>'inactive','message'=>'Your account is not active. Please confirm your account']);
                     }
-                     //update user cart with user id.........................................110
+                     //update user cart with user id............................110
                 if (!empty(Session::get('session_id'))) {
                     $user_id = Auth::user()->id;
                     $session_id = Session::get('session_id');
@@ -136,5 +140,9 @@ class UserController extends Controller
         //v169 if logout then cart session expaired
         Session::flush();
         return redirect('/');
+    }
+
+    public function userAccount(Request $request){
+        echo "hi i am account";die;
     }
 }

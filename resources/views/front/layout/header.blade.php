@@ -40,8 +40,16 @@ $sections = Section::section();
                                     </div><!-- End .header-menu -->
                                 </div><!-- End .header-dropdown -->
                             </li>
-                            <li class="login">
+                            {{-- <li class="login">
                                 <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
+                            </li> --}}
+                            <li class="logsdsdin">
+                                @if(Auth::check())
+                                <a href="{{ route('account.user') }}">My Account ||</a>
+                                <a href="{{ route('logout.logres') }}">Logout</a>
+                                @else
+                                <a href="{{ route('login.logres') }}">Sign in / Sign up</a>
+                                @endif
                             </li>
                         </ul>
                     </li>

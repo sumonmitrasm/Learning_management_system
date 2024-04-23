@@ -128,4 +128,13 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
     Route::any('/user-register',[UserController::class,'userRegister'])->name('register.user');
     Route::post('/user/login',[UserController::class,'userLogin'])->name('loginRegister.user');
     Route::any('confirm/{code}',[UserController::class,'confirmAccount'])->name('confirm.user');
+    Route::any('user/login',[UserController::class,'loginRegister'])->name('login.logres');
+
+    Route::get('user/logout',[UserController::class,'userLogout'])->name('logout.logres');
+    // Route::get('user/logout','UserController@userLogout');
+    Route::group(['middleware'=>['auth']],function(){
+        Route::any('user/account',[UserController::class,'userAccount'])->name('account.user');
+        // Route::match(['GET','POST'],'user/account','UserController@userAccount');
+        Route::any('/checkout','CourseController@checkout');
+    });
 });
