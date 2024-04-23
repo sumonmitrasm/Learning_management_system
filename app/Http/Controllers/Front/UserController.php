@@ -143,6 +143,6 @@ class UserController extends Controller
     }
 
     public function userAccount(Request $request){
-        echo "hi i am account";die;
+        return view('front.login.account');
     }
 }
