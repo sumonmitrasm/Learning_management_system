@@ -15,7 +15,6 @@
             </ol>
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
-
     <div class="page-content">
         <div class="checkout">
             <div class="container">
