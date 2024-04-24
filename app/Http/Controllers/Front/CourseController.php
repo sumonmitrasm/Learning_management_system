@@ -93,6 +93,6 @@ class CourseController extends Controller
     }
 
     public function checkout(){
-        echo "hi";die;
+        return view('front.courses.checkout');
     }
 }
