@@ -1,7 +1,7 @@
 @extends('front.layout.layout')
 @section('content')
 <main class="main">
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="page-header text-center" style="background-image: url('front/assets/images/page-header-bg.jpg')">
         <div class="container">
             <h1 class="page-title">Checkout<span>Shop</span></h1>
         </div><!-- End .container -->
@@ -31,52 +31,44 @@
                             <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>First Name *</label>
-                                        <input type="text" class="form-control" required>
+                                        <label>Your Name *</label>
+                                        <input type="text" name="name" id="name" class="form-control">
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>Last Name *</label>
-                                        <input type="text" class="form-control" required>
+                                        <label>City *</label>
+                                        <input type="text" name="city" id="city" class="form-control">
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label>Company Name (Optional)</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="company_name" id="company_name" class="form-control">
 
                                 <label>Country *</label>
-                                <input type="text" class="form-control" required>
+                                <select name="country" id="country" class="form-control">
+                                    <option selected>--Select Country--</option>
+                                    @foreach($country as $countries)
+                                    <option value="{{$countries['country_name']}}">{{$countries['country_name']}}</option>
+                                    @endforeach
+                                </select>
 
                                 <label>Street address *</label>
-                                <input type="text" class="form-control" placeholder="House number and Street name" required>
-                                <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Town / City *</label>
-                                        <input type="text" class="form-control" required>
-                                    </div><!-- End .col-sm-6 -->
-
-                                    <div class="col-sm-6">
-                                        <label>State / County *</label>
-                                        <input type="text" class="form-control" required>
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
+                                <input type="text" name="address" id="address" class="form-control" placeholder="House number and Street name">
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Postcode / ZIP *</label>
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" name="pincode" id="pincode" class="form-control">
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
                                         <label>Phone *</label>
-                                        <input type="tel" class="form-control" required>
+                                        <input type="tel" name="mobile" id="mobile" class="form-control">
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
                                 <label>Email address *</label>
-                                <input type="email" class="form-control" required>
+                                <input type="email" name="email" id="email" class="form-control">
 
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
@@ -88,8 +80,8 @@
                                     <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
                                 </div><!-- End .custom-checkbox -->
 
-                                <label>Order notes (optional)</label>
-                                <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                {{-- <label>Order notes (optional)</label>
+                                <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea> --}}
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3">
                             <div class="summary">

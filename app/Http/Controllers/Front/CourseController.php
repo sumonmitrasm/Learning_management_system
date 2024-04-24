@@ -12,6 +12,7 @@ use DB;
 use Session;
 use Auth;
 use App\Models\Cart;
+use App\Models\Country;
 use Illuminate\Support\Facades\Route;
 use App\Models\AttributesPrice;
 class CourseController extends Controller
@@ -93,6 +94,8 @@ class CourseController extends Controller
     }
 
     public function checkout(){
-        return view('front.courses.checkout');
+        $country = Country::get();
+        //echo "<pre>";print_r($country);die;
+        return view('front.courses.checkout')->with(['country'=>$country]);
     }
 }
