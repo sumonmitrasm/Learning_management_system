@@ -19,73 +19,22 @@
         <div class="checkout">
             <div class="container">
                 <div class="checkout-discount">
-                    <form action="#">
+                    <form action="javascript:;">
                         <input type="text" class="form-control" required id="checkout-discount-input">
                         <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
                     </form>
                 </div><!-- End .checkout-discount -->
-                <form action="#">
+                
                     <div class="row">
-                        <div class="col-lg-9">
-                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Your Name *</label>
-                                        <input type="text" name="name" id="name" class="form-control">
-                                    </div><!-- End .col-sm-6 -->
 
-                                    <div class="col-sm-6">
-                                        <label>City *</label>
-                                        <input type="text" name="city" id="city" class="form-control">
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
-
-                                <label>Company Name (Optional)</label>
-                                <input type="text" name="company_name" id="company_name" class="form-control">
-
-                                <label>Country *</label>
-                                <select name="country" id="country" class="form-control">
-                                    <option selected>--Select Country--</option>
-                                    @foreach($country as $countries)
-                                    <option value="{{$countries['country_name']}}">{{$countries['country_name']}}</option>
-                                    @endforeach
-                                </select>
-
-                                <label>Street address *</label>
-                                <input type="text" name="address" id="address" class="form-control" placeholder="House number and Street name">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Postcode / ZIP *</label>
-                                        <input type="text" name="pincode" id="pincode" class="form-control">
-                                    </div><!-- End .col-sm-6 -->
-
-                                    <div class="col-sm-6">
-                                        <label>Phone *</label>
-                                        <input type="tel" name="mobile" id="mobile" class="form-control">
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
-
-                                <label>Email address *</label>
-                                <input type="email" name="email" id="email" class="form-control">
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                    <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
-                                </div><!-- End .custom-checkbox -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
-                                    <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
-                                </div><!-- End .custom-checkbox -->
-
-                                {{-- <label>Order notes (optional)</label>
-                                <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea> --}}
+                        <div class="col-lg-9" id="deliveryAddresses">
+                            @include('front.courses.delivery_addresses')
                         </div><!-- End .col-lg-9 -->
+
                         <aside class="col-lg-3">
                             <div class="summary">
                                 <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
-
+                            <form action="javascript:;">
                                 <table class="table table-summary">
                                     <thead>
                                         <tr>

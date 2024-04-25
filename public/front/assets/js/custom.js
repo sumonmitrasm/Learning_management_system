@@ -135,5 +135,44 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('submit',"#addressAddEditForm",function(){
+		var formdata = $("#addressAddEditForm").serialize();
+        //alert(formdata); die;
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			  },
+			  data:formdata,
+			  url:'/save-delevery-address',
+			  type:'post',
+              success: function(resp){
+                //alert(resp);die;
+                if(resp.type=="error"){
+					$.each(resp.errors,function(i,error){
+						$("#delivery-"+i).attr('style','color:red');
+						$("#delivery-"+i).html(error);
+						setTimeout(function(){
+							$("#delivery-"+i).css({
+								'display':'none'
+							});
+						},7000);
+					});
+				}else{
+				$("#deliveryAddresses").html(resp.view);
+				window.location.href = "checkout";
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "Your work has been saved",
+					showConfirmButton: false,
+					timer: 1500
+				  });	
+				}
+              },error:function(){
+                alert("Error");
+              }
+		});
+	});
     
 });
