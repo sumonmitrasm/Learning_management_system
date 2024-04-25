@@ -16,7 +16,7 @@ class AddressController extends Controller
     public function deleveryAddress(Request $request){
         if($request->ajax()){
             $data = $request->all();
-            echo "<pre>";print_r($data);die;
+            //echo "<pre>";print_r($data);die;
             $validator = Validator::make($request->all(),[
                 'name'=> 'required|string|max:100',
                 'address'=> 'required',
@@ -38,10 +38,11 @@ class AddressController extends Controller
                 $address['address'] = $data['address'];
                 $address['city'] = $data['city'];
                 // $address['state'] = $data['delivery_state'];
-                $address['company_name'] = $data['company_name'];
+                // $address['company_name'] = $data['company_name'];
                 $address['country'] = $data['country'];
                 $address['pincode'] = $data['pincode'];
                 $address['mobile'] = $data['mobile'];
+                $address['email'] = $data['email'];
                 $address['status']=1;
             if(!empty($data['delivery_id'])){
                 //edit Delivery Address.......
@@ -50,9 +51,9 @@ class AddressController extends Controller
                //Add Delivery Address
                DeliveryAddress::create($address);
             }
-            //  $deliveryAddresses = DeliveryAddress::deliveryAddresses();
-             $countries = Country::where('status',1)->get()->toArray();
-             return response()->json(['view'=>(String)View::make('front.courses.delivery_addresses')->with(compact('countries'))]);
+            $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+             $country = Country::where('status',1)->get()->toArray();
+             return response()->json(['view'=>(String)View::make('front.courses.delivery_addresses')->with(compact('country','deliveryAddresses'))]);
             }else{
                 return response()->json(['type'=>'error','errors'=>$validator->messages()]);
             }

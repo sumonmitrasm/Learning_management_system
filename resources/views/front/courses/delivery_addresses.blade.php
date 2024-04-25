@@ -1,3 +1,7 @@
+<?php 
+use App\Models\Country;
+$country = Country::where('status',1)->get()->toArray();
+?>
 <form id="addressAddEditForm" action="javascript:;" method="post">@csrf
 {{-- <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title --> --}}
 <div class="row">
@@ -14,8 +18,8 @@
     </div><!-- End .col-sm-6 -->
 </div><!-- End .row -->
 
-<label>Company Name (Optional)</label>
-<input type="text" name="company_name" id="company_name" class="form-control">
+{{-- <label>Company Name (Optional)</label>
+<input type="text" name="company_name" id="company_name" class="form-control"> --}}
 {{-- <p id="delivery-company_name"></p> --}}
 
 <label>Country *</label>
