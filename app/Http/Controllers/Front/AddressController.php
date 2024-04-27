@@ -71,4 +71,9 @@ class AddressController extends Controller
             return response()->json(['address'=>$address]);
         }
     }
+
+    public function deleteDeliveryAddress($addressid){
+        DeliveryAddress::where('id',$addressid)->delete();
+        return redirect()->back();
+    }
 }

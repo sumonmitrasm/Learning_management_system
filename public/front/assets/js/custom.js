@@ -204,5 +204,31 @@ $(document).ready(function(){
 			}
 		});
     });
+
+    $(document).on("click",".removeAddress",function(){
+		//alert("test");die;
+		var addressid = $(this).data('addressid');
+		//alert(addressid);
+		  Swal.fire({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		    Swal.fire(
+		      'Deleted!',
+		      'Your file has been deleted.',
+		      'success'
+		    )
+			// Update the URL to the correct format, e.g., "http://example.com/cart/delete/123" (replace example.com with your domain)
+            
+			window.location = "/delevery-address/delete/"+ addressid;
+		  }
+		});
+	});
     
 });
