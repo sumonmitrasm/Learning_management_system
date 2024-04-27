@@ -31,6 +31,9 @@ class AddressController extends Controller
                 'mobile.required'=>'Please Type right Mobile number'
             ]
             );
+            if(empty($data['company_name'])){
+                $address['company_name'] = "";
+            }
             if($validator->passes()){
                 $address = array();
                 $address['user_id'] = Auth::user()->id;
@@ -38,7 +41,7 @@ class AddressController extends Controller
                 $address['address'] = $data['address'];
                 $address['city'] = $data['city'];
                 // $address['state'] = $data['delivery_state'];
-                // $address['company_name'] = $data['company_name'];
+                $address['company_name'] = $data['company_name'];
                 $address['country'] = $data['country'];
                 $address['pincode'] = $data['pincode'];
                 $address['mobile'] = $data['mobile'];
@@ -57,6 +60,15 @@ class AddressController extends Controller
             }else{
                 return response()->json(['type'=>'error','errors'=>$validator->messages()]);
             }
+        }
+    }
+
+    public function getDeleveryAddress(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $address = DeliveryAddress::where('id',$data['addressid'])->first()->toArray();
+            //echo "<pre>";print_r($address);die;
+            return response()->json(['address'=>$address]);
         }
     }
 }

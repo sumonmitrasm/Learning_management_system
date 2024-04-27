@@ -174,5 +174,35 @@ $(document).ready(function(){
               }
 		});
 	});
+
+    $(document).on('click','.aditAddress',function(){
+        var addressid = $(this).data("addressid");
+        //alert(addressid);die;
+        $.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			  },
+			data:{addressid:addressid},
+			url:'/get-delivery-address',
+			type:'post',
+			success:function(resp){
+                //alert(resp);die;
+				// $("#showdifferent").removeClass("collapse");
+				// $(".newAddress").hide();
+				// $(".deliveryText").text("Edit Delivery Address");
+				$('[name=delivery_id]').val(resp.address['id']);
+				$('[name=name]').val(resp.address['name']);
+				$('[name=address]').val(resp.address['address']);
+				$('[name=city]').val(resp.address['city']);
+				$('[name=company_name]').val(resp.address['company_name']);
+				$('[name=country]').val(resp.address['country']);
+				$('[name=pincode]').val(resp.address['pincode']);
+				$('[name=mobile]').val(resp.address['mobile']);
+                $('[name=email]').val(resp.address['email']);
+			},error:function(){
+				alert("Error");
+			}
+		});
+    });
     
 });
