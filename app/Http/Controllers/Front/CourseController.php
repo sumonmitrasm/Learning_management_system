@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Section;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\View;
 use DB;
 use Session;
@@ -99,5 +100,20 @@ class CourseController extends Controller
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();
         //dd($deliveryAddresses);die;
         return view('front.courses.checkout')->with(['country'=>$country,'deliveryAddresses'=>$deliveryAddresses]);
+    }
+
+    public function applyCoupon(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $couponCount = Coupon::where('coupon_code',$data['code'])->count();
+            $getCartItems = Cart::getCartItems();
+            if($couponCount==0){
+                return response()->json([
+                    'status'=>false,
+                    'message'=>'The coupon is not valid!',
+                    'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
+                ]);
+            }
+        }
     }
 }

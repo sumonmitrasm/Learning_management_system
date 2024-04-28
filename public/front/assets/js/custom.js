@@ -230,5 +230,30 @@ $(document).ready(function(){
 		  }
 		});
 	});
+
+    $("#ApplyCoupon").submit(function(){
+        var user = $(this).attr("user");
+        if(user==1){
+
+        }else{
+            alert("Please login to apply Coupon!");
+            return false;
+        }
+        var code = $("#code").val();
+        //alert(code);die;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type:'post',
+              url:'/apply-coupon',
+              data:{code:code},
+              success:function(resp){
+                alert(resp.message);
+              },error:function(){
+                alert("Error");
+            }
+        });
+    });
     
 });

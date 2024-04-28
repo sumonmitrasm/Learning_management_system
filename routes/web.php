@@ -137,6 +137,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::any('user/account',[UserController::class,'userAccount'])->name('account.user');
         // Route::match(['GET','POST'],'user/account','UserController@userAccount');
         Route::any('/checkout','CourseController@checkout');
+        Route::post('/apply-coupon','CourseController@applyCoupon');
         Route::any('/save-delevery-address',[AddressController::class,'deleveryAddress'])->name('delevery.address');
         Route::any('/get-delivery-address',[AddressController::class,'getDeleveryAddress'])->name('editdelevery.address');
         Route::get('/delevery-address/delete/{addressid}',[AddressController::class,'deleteDeliveryAddress'])->name('deletedelevery.address');

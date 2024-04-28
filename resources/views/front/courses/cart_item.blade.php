@@ -58,9 +58,9 @@
     <!-- End .table table-wishlist -->
     <div class="cart-bottom">
        <div class="cart-discount">
-          <form action="#">
+         <form id="ApplyCoupon" method="post" action="javascript:void(0)" @if(Auth::check()) user="1" @endif>@csrf
              <div class="input-group">
-                <input type="text" class="form-control" required placeholder="coupon code">
+                <input type="text" class="form-control" id="code" name="code" placeholder="coupon code">
                 <div class="input-group-append">
                    <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
                 </div>
