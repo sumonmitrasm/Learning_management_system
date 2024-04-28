@@ -249,7 +249,24 @@ $(document).ready(function(){
               url:'/apply-coupon',
               data:{code:code},
               success:function(resp){
-                alert(resp.message);
+                // alert(resp.message);
+                Swal.fire({
+                    title: resp.message,
+                    showClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                  });
               },error:function(){
                 alert("Error");
             }
