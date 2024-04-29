@@ -113,6 +113,82 @@ class CourseController extends Controller
                     'message'=>'The coupon is not valid!',
                     'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
                 ]);
+            }else{
+                $couponDetails = Coupon::where('coupon_code',$data['code'])->first();
+                    if ($couponDetails->status==0) {
+                        $message = 'This coupon is not active!';
+                    }
+                // coupon is expaire or not
+                $expairy_date = $couponDetails->expairy_date;
+                    $current_date = date('Y-m-d');
+                    if ($expairy_date <= $current_date) {
+                        $message = 'Coupon offer is expaired!';
+                    }
+                    //coupon code is alrady availed
+                    if ($couponDetails->coupon_type=="Single Times") {
+                        $couponCount = Order::where(['coupon_code'=>$data['code'],'user_id'=>Auth::user()->id])->count();
+                        if ($couponCount >= 1) {
+                            $messages = 'This coupon code is alrady availed you!';
+                        }
+                    }
+                //get all selected categories from coupon
+                $catArr = explode(",", $couponDetails->categories);
+                $total_amount = 0;
+                    foreach ($getCartItems as $key => $item) {
+                        if (!in_array($item['product']['category_id'], $catArr)) {
+                            $message = 'This coupon code is not for one of the selected products!';
+                        }
+                        $attrprice = Course::getCourseattrPrtice($item['course_id'],$item['size']);
+                        $total_amount = $total_amount + ($attrprice['final_price']*$item['quantity']);
+                    }
+                //get all selected users from cart and find id fast...
+                if(isset($couponDetails->users) && !empty($couponDetails->users)){
+                    $usersArr = explode(",", $couponDetails->users);
+                    if(count($usersArr)){
+                        foreach ($usersArr as $key => $user) {
+                            $getUserId = User::select('id')->where('email',$user)->first()->toArray();
+                            $usersId[] = $getUserId['id'];
+                        }
+                        // Check if any cart item not belong to coupon user.... kno user add na korle..
+                        foreach($getCartItems as $item){
+                            if (!in_array($item['user_id'], $usersId)) {
+                                $message = "This coupon code is not for you. Try with valid coupon code!";
+                            }
+                        }
+                    }
+                }
+
+                if(isset($message)){
+                    return response()->json([
+                        'status'=>false,
+                        'getCartItems'=>$getCartItems,
+                        'message'=>$message,
+                        'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
+                        // 'headerview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))    
+                    ]);
+                }else{
+                    //check ammout type is fixd or percentage.................127
+                    if ($couponDetails->amount_type=="Fixed") {
+                        $couponAmount = $couponDetails->amount;
+                    }else{
+                        $couponAmount = $total_amount * ($couponDetails->amount/100);
+                    }
+                    $grand_total = $total_amount - $couponAmount;
+                    Session::put('couponAmount',$couponAmount);
+                    Session::put('couponCode',$data['code']);
+                    $message = "Coupon code successfully applied";
+                    return response()->json([
+                        'status'=>true,
+                        'getCartItems'=>$getCartItems,
+                        // 'totalCartItems'=>$totalCartItems,
+                        'couponAmount'=>$couponAmount,
+                        'grand_total'=>$grand_total,
+                        'message'=>$message,
+                        'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
+                        // 'headerview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                    ]);
+                }
+
             }
         }
     }
