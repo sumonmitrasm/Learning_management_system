@@ -79,7 +79,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{url('addEdit.coupon',['id'=>$value['id']])}}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
+                                                    <a href="{{route('addEdit.coupon',['id'=>$value['id']])}}"><i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
                                                     <a href="javascript:void(0)" title="Delete Coupon" class="confirmDelete" module="coupon" moduleid="{{$value['id']}}"><i style="font-size:25px; color:red;" class="mdi mdi-file-excel-box"></i></a>
                                                 </td>
                                             </tr>

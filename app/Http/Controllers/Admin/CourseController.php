@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Section;
 use App\Models\Category;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;

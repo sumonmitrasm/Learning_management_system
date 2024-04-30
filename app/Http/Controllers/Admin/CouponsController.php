@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Section;
 use App\Models\User;
 use App\Models\Brand;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 class CouponsController extends Controller
 {
     public function coupons(){
@@ -70,7 +72,7 @@ class CouponsController extends Controller
                   $brands = "";
               }
               if ($data['coupon_option']=="Automatic") {
-                $coupon_code = str_random(8);
+                $coupon_code = Str::random(8);
             }else{
                 $coupon_code = $data['coupon_code'];
             }

@@ -106,7 +106,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('/admin')->group(function
         Route::get('delete-slider/{id}',[SliderController::class,'deleteStatus'])->name('slider.delete');
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Coupons<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         Route::get('coupons',[CouponsController::class,'coupons'])->name('view.coupon');
-        Route::get('add-edit-coupon/{id?}',[CouponsController::class,'addEditCoupon'])->name('addEdit.coupon');
+        Route::any('add-edit-coupon/{id?}',[CouponsController::class,'addEditCoupon'])->name('addEdit.coupon');
         Route::get('update-coupons-status',[CouponsController::class,'updateCouponsStatus'])->name('update.coupon');
         Route::get('delete-coupon/{id}',[CouponsController::class,'deleteCoupon'])->name('delete.coupon');
         // Route::get('coupons', 'CouponsController@coupons');

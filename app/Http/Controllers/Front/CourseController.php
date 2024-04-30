@@ -15,6 +15,7 @@ use Auth;
 use App\Models\Cart;
 use App\Models\DeliveryAddress;
 use App\Models\Country;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\AttributesPrice;
 class CourseController extends Controller
@@ -121,7 +122,7 @@ class CourseController extends Controller
                 // coupon is expaire or not
                 $expairy_date = $couponDetails->expairy_date;
                     $current_date = date('Y-m-d');
-                    if ($expairy_date <= $current_date) {
+                    if ($expairy_date > $current_date) {
                         $message = 'Coupon offer is expaired!';
                     }
                     //coupon code is alrady availed
