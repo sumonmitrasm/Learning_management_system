@@ -122,8 +122,8 @@ use App\Models\Course;
                                         <label class="label-text" for="paypal">Paypal</label>
                                     </div>
                                     <div class="u-s-m-b-13 prepaidMethod">
-                                        <input type="radio" class="radio-box" name="payment_gateway" id="iyzipay" value="iyzipay">
-                                        <label class="label-text" for="iyzipay">Iyzipay</label>
+                                        <input type="radio" class="radio-box" name="payment_gateway" id="sslcommerz" value="sslcommerz">
+                                        <label class="label-text" for="sslcommerz">sslcommerz</label>
                                     </div>
                                     <div class="u-s-m-b-13">
                                         <input type="checkbox" class="check-box" id="accept" name="accept" value="Yes" required>

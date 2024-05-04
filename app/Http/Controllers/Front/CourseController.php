@@ -207,6 +207,14 @@ class CourseController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             echo "<pre>";print_r($data);die;
+            if(empty($data['payment_gateway'])){
+                $message = "Please select Payment Method";
+                return redirect()->back()->with('error_message',$message);
+            }
+            if(empty($data['address_id'])){
+                $message = "Please select Delivery Address";
+                return redirect()->back()->with('error_message',$message);
+            }
         }
         $country = Country::get();
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();
