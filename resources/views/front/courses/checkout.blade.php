@@ -1,5 +1,8 @@
 @extends('front.layout.layout')
 @section('content')
+<?php 
+use App\Models\Course;
+?>
 <main class="main">
     <div class="page-header text-center" style="background-image: url('front/assets/images/page-header-bg.jpg')">
         <div class="container">
@@ -29,7 +32,20 @@
 
                         <div class="col-lg-9" id="deliveryAddresses">
                             @include('front.courses.delivery_addresses')
-                            @if(count($deliveryAddresses)>0)
+
+                            {{-- @if(count($deliveryAddresses)>0)
+                                <h4 class="section-h4">Delivery Address</h4>
+                                    @foreach ($deliveryAddresses as $address)
+                                    <div class="control-group" style="float:left; margin-right:5px;"><input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}"></div>
+
+                                    <div><label class="control-label">{{$address['name']}}, {{$address['address']}}, {{$address['city']}}, {{$address['country']}}, {{$address['mobile']}}</label>
+                                        <a style="float:right; margin-left:3px;" href="javascript:;" data-addressid="{{$address['id']}}" class="removeAddress">Remove</a>&nbsp;
+                                        <a style="float:right;" href="javascript:;" data-addressid="{{$address['id']}}" class="aditAddress">Edit ||</a>
+                                    </div>
+                                    @endforeach
+                                @endif --}}
+                                <form name="checkoutForm" id="checkoutForm" method="post" action="{{url('/checkout')}}">@csrf
+                                    @if(count($deliveryAddresses)>0)
                                 <h4 class="section-h4">Delivery Address</h4>
                                     @foreach ($deliveryAddresses as $address)
                                     <div class="control-group" style="float:left; margin-right:5px;"><input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}"></div>
@@ -41,11 +57,9 @@
                                     @endforeach
                                 @endif
                         </div><!-- End .col-lg-9 -->
-                        
                         <aside class="col-lg-3">
                             <div class="summary">
                                 <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
-                            <form action="javascript:;">
                                 
                                 <table class="table table-summary">
                                     <thead>
@@ -54,92 +68,71 @@
                                             <th>Total</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
+                                        @php $total_price = 0 @endphp
+                                        @foreach($getCartItems as $item)
+                                        <?php $attrprice = Course::getCourseattrPrtice($item['course_id'],$item['size']);
+                                        ?>
                                         <tr>
-                                            <td><a href="#">Beige knitted elastic runner shoes</a></td>
-                                            <td>$84.00</td>
+                                            <td><img width="40" src="{{ asset('admin/course/large/'.$item['product']['image'])}}" alt="Product">
+                                                <h6 class="order-h6">{{$item['product']['course_name']}}</h6>
+                                                <span class="order-span-quantity">{{$item['quantity']}}</span>>{{$item['size']}}>{{$item['product']['color']}}
+                                            </td>
+                                            <td>Rs.{{$attrprice['final_price'] * $item['quantity']}}</td>
                                         </tr>
-
+                                        @php $total_price = $total_price + ($attrprice['final_price'] * $item['quantity'])  @endphp
+                                        @endforeach
                                         <tr>
                                             <td><a href="#">Blue utility pinafore denimdress</a></td>
                                             <td>$76,00</td>
                                         </tr>
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
-                                            <td>$160.00</td>
+                                            <td>Rs.{{$total_price}}</td>
                                         </tr><!-- End .summary-subtotal -->
                                         <tr>
                                             <td>Shipping:</td>
                                             <td>Free shipping</td>
                                         </tr>
+                                        <tr>
+                                            <td>Coupon Discount:</td>
+                                            <td class="couponAmount">
+                                                @if(Session::has('couponAmount'))
+                                                      Rs.{{Session::get('couponAmount')}}
+                                                @else
+                                                      Rs.0
+                                                @endif
+                                              </td>
+                                        </tr>
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>$160.00</td>
+                                            <td class="grand_total">Rs.{{$total_price - Session::get('couponAmount')}}</td>
                                         </tr><!-- End .summary-total -->
+                                       
                                     </tbody>
                                 </table><!-- End .table table-summary -->
 
                                 <div class="accordion-summary" id="accordion-payment">
-                                    <div class="card">
-                                        <div class="card-header" id="heading-1">
-                                            <h2 class="card-title">
-                                                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                                                    Direct bank transfer
-                                                </a>
-                                            </h2>
-                                        </div><!-- End .card-header -->
-                                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-                                            <div class="card-body">
-                                                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
-
-                                    <div class="card">
-                                        <div class="card-header" id="heading-2">
-                                            <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                                                    Check payments
-                                                </a>
-                                            </h2>
-                                        </div><!-- End .card-header -->
-                                        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-                                            <div class="card-body">
-                                                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
-
-                                    <div class="card">
-                                        <div class="card-header" id="heading-3">
-                                            <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                                                    Cash on delivery
-                                                </a>
-                                            </h2>
-                                        </div><!-- End .card-header -->
-                                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-                                            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
-
-                                    <div class="card">
-                                        <div class="card-header" id="heading-4">
-                                            <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                                                    PayPal <small class="float-right paypal-link">What is PayPal?</small>
-                                                </a>
-                                            </h2>
-                                        </div><!-- End .card-header -->
-                                        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
-                                            <div class="card-body">
-                                                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
-
+                                    <div class="u-s-m-b-13 codMethod">
+                                        <input type="radio" class="radio-box" name="payment_gateway" id="cash-on-delivery" value="COD">
+                                        <label class="label-text" for="cash-on-delivery">Cash on Delivery</label>
+                                    </div>
+                                    <div class="u-s-m-b-13 prepaidMethod">
+                                        <input type="radio" class="radio-box" name="payment_gateway" id="paypal" value="Paypal">
+                                        <label class="label-text" for="paypal">Paypal</label>
+                                    </div>
+                                    <div class="u-s-m-b-13 prepaidMethod">
+                                        <input type="radio" class="radio-box" name="payment_gateway" id="iyzipay" value="iyzipay">
+                                        <label class="label-text" for="iyzipay">Iyzipay</label>
+                                    </div>
+                                    <div class="u-s-m-b-13">
+                                        <input type="checkbox" class="check-box" id="accept" name="accept" value="Yes" required>
+                                        <label class="label-text no-color" for="accept">I’ve read and accept the
+                                            <a href="terms-and-conditions.html" class="u-c-brand">terms & conditions</a>
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="button button-outline-secondary">Place Order</button>
+                                </div><!-- End .card -->
                                     <div class="card">
                                         <div class="card-header" id="heading-5">
                                             <h2 class="card-title">

@@ -96,13 +96,6 @@ class CourseController extends Controller
         return view('front.courses.cart')->with(['getCartItems'=>$getCartItems]);
     }
 
-    public function checkout(){
-        $country = Country::get();
-        $deliveryAddresses = DeliveryAddress::deliveryAddresses();
-        //dd($deliveryAddresses);die;
-        return view('front.courses.checkout')->with(['country'=>$country,'deliveryAddresses'=>$deliveryAddresses]);
-    }
-
     public function applyCoupon(Request $request){
         if($request->ajax()){
             $data = $request->all();
@@ -202,5 +195,22 @@ class CourseController extends Controller
 
             }
         }
+    }
+
+    public function checkout(Request $request){
+        $getCartItems = Cart::getCartItems();
+        if (count($getCartItems)==0) {
+            $message = "Shopping cart is empty..Please add products.";
+            Session::put('error_message',$message);
+            return redirect('cart');
+        }
+        if($request->isMethod('post')){
+            $data = $request->all();
+            echo "<pre>";print_r($data);die;
+        }
+        $country = Country::get();
+        $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+        //dd($deliveryAddresses);die;
+        return view('front.courses.checkout')->with(['country'=>$country,'deliveryAddresses'=>$deliveryAddresses,'getCartItems'=>$getCartItems]);
     }
 }
