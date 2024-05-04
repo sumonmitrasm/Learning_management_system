@@ -116,11 +116,17 @@
                 <td>
                    <div class="custom-control custom-radio">
                       <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-                      <label class="custom-control-label" for="express-shipping">Express:</label>
+                      <label class="custom-control-label" for="express-shipping">Coupon Ammount:</label>
                    </div>
                    <!-- End .custom-control -->
                 </td>
-                <td>$20.00</td>
+                <td class="couponAmount">
+                  @if(Session::has('couponAmount'))
+                        Rs.{{Session::get('couponAmount')}}
+                  @else
+                        Rs.0
+                  @endif
+                </td>
              </tr>
              <!-- End .summary-shipping-row -->
              <tr class="summary-shipping-estimate">
@@ -130,7 +136,7 @@
              <!-- End .summary-shipping-estimate -->
              <tr class="summary-total">
                 <td>Total:</td>
-                <td>Rs.{{$total_price}}</td>
+                <td class="grand_total">Rs.{{$total_price - Session::get('couponAmount')}}</td>
              </tr>
              <!-- End .summary-total -->
           </tbody>

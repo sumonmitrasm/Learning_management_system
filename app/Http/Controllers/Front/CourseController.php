@@ -106,11 +106,17 @@ class CourseController extends Controller
     public function applyCoupon(Request $request){
         if($request->ajax()){
             $data = $request->all();
+            Session::forget('couponCode');
+            Session::forget('couponAmount');
             $couponCount = Coupon::where('coupon_code',$data['code'])->count();
             $getCartItems = Cart::getCartItems();
+            //loded the helpher function
+            $totalCartItems = totalCartItems();
             if($couponCount==0){
                 return response()->json([
                     'status'=>false,
+                    'getCartItems'=>$getCartItems,
+                    'totalCartItems'=>$totalCartItems,
                     'message'=>'The coupon is not valid!',
                     'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
                 ]);
@@ -140,7 +146,9 @@ class CourseController extends Controller
                             $message = 'This coupon code is not for one of the selected products!';
                         }
                         $attrprice = Course::getCourseattrPrtice($item['course_id'],$item['size']);
+                        // echo "<pre>";print_r($attrprice);die;
                         $total_amount = $total_amount + ($attrprice['final_price']*$item['quantity']);
+                        //echo "<pre>";print_r($total_amount);die;
                     }
                 //get all selected users from cart and find id fast...
                 if(isset($couponDetails->users) && !empty($couponDetails->users)){
@@ -163,6 +171,7 @@ class CourseController extends Controller
                     return response()->json([
                         'status'=>false,
                         'getCartItems'=>$getCartItems,
+                        'totalCartItems'=>$totalCartItems,
                         'message'=>$message,
                         'view'=>(String)View::make('front.courses.cart_item')->with(compact('getCartItems'))
                         // 'headerview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))    
@@ -175,13 +184,14 @@ class CourseController extends Controller
                         $couponAmount = $total_amount * ($couponDetails->amount/100);
                     }
                     $grand_total = $total_amount - $couponAmount;
+                    //echo "<pre>";print_r($grand_total);die;
                     Session::put('couponAmount',$couponAmount);
                     Session::put('couponCode',$data['code']);
                     $message = "Coupon code successfully applied";
                     return response()->json([
                         'status'=>true,
                         'getCartItems'=>$getCartItems,
-                        // 'totalCartItems'=>$totalCartItems,
+                        'totalCartItems'=>$totalCartItems,
                         'couponAmount'=>$couponAmount,
                         'grand_total'=>$grand_total,
                         'message'=>$message,

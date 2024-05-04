@@ -267,6 +267,16 @@ $(document).ready(function(){
                       `
                     }
                   });
+                  $("#appendCartItems").html(resp.view);
+                  $(".totalCartItems").html(resp.totalCartItems);
+                  if (resp.couponAmount>=0) {
+					$(".couponAmount").text("Rs."+resp.couponAmount);
+                  }else{
+                    $(".couponAmount").text("Rs.0");
+                  }
+                  if (resp.grand_total>=0) {
+					$(".grand_total").text("Rs."+resp.grand_total);
+				  }
               },error:function(){
                 alert("Error");
             }
