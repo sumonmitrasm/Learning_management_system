@@ -13,4 +13,8 @@ class AttributesPrice extends Model
         $getProductStock = AttributesPrice::select('stock')->where(['course_id'=>$course_id,'size'=>$size])->first();
         return $getProductStock->stock;
     }
+    public static function getAttributeStatus($course_id,$size){
+        $getAttributeStatus = AttributesPrice::select('status')->where(['course_id'=>$course_id,'size'=>$size])->first();
+        return $getAttributeStatus->status;
+    }
 }

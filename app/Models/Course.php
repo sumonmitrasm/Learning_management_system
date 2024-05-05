@@ -70,4 +70,11 @@ class Course extends Model
         }
         return array('course_price'=>$proAttrPrice['price'],'final_price'=> $final_price,'discount'=>$discount);
     }
+    public static function getCourseStatus($course_id){
+        $getCourseStatus = Course::select('status')->where('id',$course_id)->first();
+        return $getCourseStatus->status;
+    }
+    public static function deleteCartProduct($course_id){
+        Cart::where('course_id',$course_id)->delete();
+    }
 }

@@ -199,6 +199,7 @@ class CourseController extends Controller
 
     public function checkout(Request $request){
         $getCartItems = Cart::getCartItems();
+        $deliveryAddress = DeliveryAddress::where('id',$data['address_id'])->first()->toArray();
         if (count($getCartItems)==0) {
             $message = "Shopping cart is empty..Please add products.";
             Session::put('error_message',$message);
@@ -206,7 +207,7 @@ class CourseController extends Controller
         }
         if($request->isMethod('post')){
             $data = $request->all();
-            echo "<pre>";print_r($data);die;
+            //echo "<pre>";print_r($data);die;
             if(empty($data['payment_gateway'])){
                 $message = "Please select Payment Method";
                 return redirect()->back()->with('error_message',$message);
@@ -215,6 +216,46 @@ class CourseController extends Controller
                 $message = "Please select Delivery Address";
                 return redirect()->back()->with('error_message',$message);
             }
+            if ($data['payment_gateway']=="COD") {
+                $payment_method = "COD";
+                $order_status = "New";
+            }else{
+                $payment_method = "Prepaid";
+                $order_status = "Pending";
+            }
+            $total_price = 0;
+            foreach($getCartItems as $item){
+                $attrprice = Course::getCourseattrPrtice($item['course_id'],$item['size']);
+                $total_price = $total_price + ($attrprice['final_price'] * $item['quantity']);
+            }
+            foreach($getCartItems as $item){
+                $product_status = Course::getCourseStatus($item['course_id']);
+                //dd($product_status );
+                if($product_status==0){
+                    Course::deleteCartProduct($item['course_id']);
+                    $message = "One of the product is disable! Please try again.";
+                    return redirect('/cart')->with('error_message',$message);
+                }
+                $getProductStock = AttributesPrice::getProductStock($item['course_id'],$item['size']);
+                if($getProductStock==0){
+                    Course::deleteCartProduct($item['course_id']);
+                    $message = "One of the product is Soldout! Please try again.";
+                    return redirect('/cart')->with('error_message',$message);
+                }
+                $getAttributeStatus = AttributesPrice::getAttributeStatus($item['course_id'],$item['size']);
+                if($getAttributeStatus==0){
+                    $message = $item['product']['course_name']." with ".$item['size']." Size is not available. Please remove from cart and chose some other product.";
+                    return redirect('/cart')->with('error_message',$message);
+                }
+                $getCategoryStatus = Category::getCategoryStatus($item['product']['category_id']);
+                if($getCategoryStatus==0){
+                    // Product::deleteCartProduct($item['product_id']);
+                    // $message = "One of the product is Disable! Please try again.";
+                    $message = $item['product']['course_name']." with ".$item['size']." Size is not available. Please remove from cart and chose some other product.";
+                    return redirect('/cart')->with('error_message',$message);
+                }
+            }
+            
         }
         $country = Country::get();
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();

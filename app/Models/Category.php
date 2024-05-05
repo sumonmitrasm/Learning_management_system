@@ -35,4 +35,9 @@ class Category extends Model
         }
         return array('catIds'=>$catIds,'categoryDetails'=>$categoryDetails); 
     }
+
+    public static function getCategoryStatus($category_id){
+        $getCategoryStatus = Category::select('status')->where('id',$category_id)->first();
+        return $getCategoryStatus->status;
+    }
 }
