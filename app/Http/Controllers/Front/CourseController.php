@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Category;
 use App\Models\Section;
 use App\Models\Coupon;
+use App\Models\ShippingCharge;
 use Illuminate\Support\Facades\View;
 use DB;
 use Session;
@@ -18,6 +19,8 @@ use App\Models\Country;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\AttributesPrice;
+use App\Models\Order;
+use App\Models\OrdersProduct;
 class CourseController extends Controller
 {
     public function listing(){
@@ -254,6 +257,84 @@ class CourseController extends Controller
                     $message = $item['product']['course_name']." with ".$item['size']." Size is not available. Please remove from cart and chose some other product.";
                     return redirect('/cart')->with('error_message',$message);
                 }
+            }
+            $shipping_charges = 0;
+            $shipping_charges = ShippingCharge::getShippingCharges($total_weight,$deliveryAddress['country']);
+            $grand_total = $total_price + $shipping_charges - Session::get('couponAmount');
+            Session::put('grand_total',$grand_total);
+
+            DB::beginTransaction();
+
+            $order = new Order;
+            $order->user_id = Auth::user()->id;
+            $order->name = $deliveryAddress['name'];
+            $order->address = $deliveryAddress['address'];
+            $order->city = $deliveryAddress['city'];
+            $order->country = $deliveryAddress['country'];
+            $order->pincode = $deliveryAddress['pincode'];
+            $order->mobile = $deliveryAddress['mobile'];
+            $order->email = Auth::user()->email;
+            $order->shipping_charges = $shipping_charges; 
+            $order->coupon_code = Session::get('couponCode');
+            $order->coupon_amount = Session::get('couponAmount');
+            $order->order_status = $order_status;
+            $order->payment_method = $payment_method;
+            $order->payment_gateway = $data['payment_gateway'];
+            $order->grand_total = $grand_total;
+            $order->save();
+
+            $order_id = DB::getPdo()->lastInsertId();
+
+            foreach($getCartItems as $item){
+                $cartItem = new OrdersProduct;
+                $cartItem->order_id = $order_id;
+                $cartItem->user_id = Auth::user()->id;
+                $getProductDetails = Course::select('id','course_code','course_name','color')->where('id',$item['course_id'])->first()->toArray();
+                $cartItem->course_id = $item['course_id'];
+                $cartItem->course_code = $getProductDetails['course_code'];
+                $cartItem->course_name = $getProductDetails['course_name'];
+                $cartItem->color = $getProductDetails['color'];
+                $cartItem->size = $item['size'];
+                $getDiscountedAttrPrice = Course::getCourseattrPrtice($item['course_id'],$item['size']);
+                $cartItem->course_price = $getDiscountedAttrPrice['final_price'];
+                $getProductStock = AttributesPrice::getProductStock($item['course_id'],$item['size']);
+                if($item['quantity']>$getProductStock){
+                    $message = $getProductDetails['course_name']." with ".$item['size']." Stock quantity is not available. Please reduce its quantity and try again";
+                    return redirect('/cart')->with('error_message',$message);
+                }
+                $cartItem->product_qty = $item['quantity'];
+                $cartItem->save();
+
+                $grtProductStock = AttributesPrice::getProductStock($item['course_id'],$item['size']);
+                $newStock = $grtProductStock - $item['quantity'];
+                AttributesPrice::where(['course_id'=>$item['course_id'],'size'=>$item['size']])->update(['stock'=>$newStock]);
+            }
+            Session::put('order_id',$order_id);
+            DB::commit();
+            $orderDetails = Order::with('orders_products')->where('id',$order_id)->first()->toArray();
+            $userDetails = User::where('id',$orderDetails['user_id'])->first()->toArray();
+            if ($data['payment_gateway']=="COD") {
+                $email = Auth::user()->email;
+                $messageData = [
+                    'email' => $email,
+                    'name' => Auth::user()->name,
+                    'order_id' => $order_id,
+                    'orderDetails' => $orderDetails,
+                    'userDetails' => $userDetails
+                ];
+                Mail::send('emails.order',$messageData,function($message) use($email){
+                    $message->to($email)->subject('Order Placed - Super-shop website');
+                });
+                //send order sms script...........................................146
+                // $message = "Dear Coustomer, Your order ".$order_id." hasbeen successfully plased with E-shop. We will intimate you  once your order is shipped";
+                // $mobile = Auth::user()->mobile;
+                // Sms::sendSms($message,$mobile);
+            }else if($data['payment_gateway']=="Paypal"){
+                return redirect('/paypal');
+            }else if($data['payment_gateway']=="sslcommerz"){
+                return redirect('/sslcommerz');
+            }else{
+                echo " Other Prepaid Method coming soon";die;
             }
             
         }
