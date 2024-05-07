@@ -13,12 +13,10 @@ class Cart extends Model
     public static function getCartItems()
     {
     	if (Auth::check()) {
-            //if user LOgin.......................100
     		$getCartItems = Cart::with(['product'=>function($query){
     			$query->select('id','course_name','slug','category_id','course_code','image','color','product_weight');
     		}])->where('user_id',Auth::user()->id)->orderBy('id','Desc')->get()->toArray();
     	}else{
-            //if not LOgin .......................100
     		$getCartItems = Cart::with(['product'=>function($query){
     			$query->select('id','course_name','slug','category_id','course_code','image','color','product_weight');
     		}])->where('session_id',Session::get('session_id'))->orderBy('id','Desc')->get()->toArray();
