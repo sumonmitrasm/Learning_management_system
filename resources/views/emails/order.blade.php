@@ -32,12 +32,12 @@
                         
                         @foreach($orderDetails['orders_products'] as $order)
                         <tr>
-                            <td>{{$order['product_name']}}</td>
-                            <td>{{$order['product_code']}}</td>
-                            <td>{{$order['product_size']}}</td>
-                            <td>{{$order['product_color']}}</td>
+                            <td>{{$order['course_name']}}</td>
+                            <td>{{$order['course_code']}}</td>
+                            <td>{{$order['size']}}</td>
+                            <td>{{$order['color']}}</td>
                             <td>{{$order['product_qty']}}</td>
-                            <td>INR {{$order['product_price']}}</td>
+                            <td>INR {{$order['course_price']}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -77,9 +77,9 @@
                     <tr>
                         <td>{{$orderDetails['city']}}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>{{$orderDetails['state']}}</td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td>{{$orderDetails['pincode']}}</td>
                     </tr>
@@ -89,11 +89,11 @@
                 </table>
             </td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td><a href="{{url('orders/invoice/downlode/'.$orderDetails['id'])}}">Click here to downlode order Invoice</a></td></tr>
+            {{-- <tr><td><a href="{{url('orders/invoice/downlode/'.$orderDetails['id'])}}">Click here to downlode order Invoice</a></td></tr> --}}
             <tr><td>&nbsp;</td></tr>
             <tr><td>Contuct Us: <a href="mailto:sumonmitrasm@gmail.com">sumonmitrasm@gmail.com</a></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Regards,<br><span style="color:rgba(247, 244, 65, 0.863));">Daily Shop</span></td></tr>
+            <tr><td>Regards,<br><span style="color:rgba(247, 244, 65, 0.863));">Supershop Shop</span></td></tr>
             <tr><td>&nbsp;</td></tr>
         </table>
     </body>

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\AttributesPrice;
 use App\Models\Order;
 use App\Models\OrdersProduct;
+use Illuminate\Support\Facades\Mail;
 class CourseController extends Controller
 {
     public function listing(){
@@ -202,7 +203,7 @@ class CourseController extends Controller
 
     public function checkout(Request $request){
         $getCartItems = Cart::getCartItems();
-        $deliveryAddress = DeliveryAddress::where('id',$data['address_id'])->first()->toArray();
+        
         if (count($getCartItems)==0) {
             $message = "Shopping cart is empty..Please add products.";
             Session::put('error_message',$message);
@@ -219,6 +220,7 @@ class CourseController extends Controller
                 $message = "Please select Delivery Address";
                 return redirect()->back()->with('error_message',$message);
             }
+            $deliveryAddress = DeliveryAddress::where('id',$data['address_id'])->first()->toArray();
             if ($data['payment_gateway']=="COD") {
                 $payment_method = "COD";
                 $order_status = "New";
@@ -259,7 +261,8 @@ class CourseController extends Controller
                 }
             }
             $shipping_charges = 0;
-            $shipping_charges = ShippingCharge::getShippingCharges($total_weight,$deliveryAddress['country']);
+            $total_weight = 0;
+            // $shipping_charges = ShippingCharge::getShippingCharges($total_weight,$deliveryAddress['country']);
             $grand_total = $total_price + $shipping_charges - Session::get('couponAmount');
             Session::put('grand_total',$grand_total);
 
@@ -336,11 +339,19 @@ class CourseController extends Controller
             }else{
                 echo " Other Prepaid Method coming soon";die;
             }
-            
+            return redirect('thanks');
         }
         $country = Country::get();
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();
         //dd($deliveryAddresses);die;
         return view('front.courses.checkout')->with(['country'=>$country,'deliveryAddresses'=>$deliveryAddresses,'getCartItems'=>$getCartItems]);
+    }
+    public function thanks(){
+        if (Session::has('order_id')) {
+            Cart::where('user_id',Auth::user()->id)->delete();
+            return view('front.courses.thanks');
+        }else{
+            return redirect('/cart');
+        } 
     }
 }

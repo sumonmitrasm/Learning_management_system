@@ -141,5 +141,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::any('/save-delevery-address',[AddressController::class,'deleveryAddress'])->name('delevery.address');
         Route::any('/get-delivery-address',[AddressController::class,'getDeleveryAddress'])->name('editdelevery.address');
         Route::get('/delevery-address/delete/{addressid}',[AddressController::class,'deleteDeliveryAddress'])->name('deletedelevery.address');
+        Route::get('thanks','CourseController@thanks');
+        Route::get('/sslcommerz', 'SslcommerzController@sslcommerz');
     });
 });
