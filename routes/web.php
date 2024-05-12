@@ -143,5 +143,11 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
         Route::get('/delevery-address/delete/{addressid}',[AddressController::class,'deleteDeliveryAddress'])->name('deletedelevery.address');
         Route::get('thanks','CourseController@thanks');
         Route::get('/sslcommerz', 'SslcommerzController@sslcommerz');
+        Route::get('success','SslcommerzController@success');
+
+        Route::any('/fail','SslcommezController@fail');
+        Route::any('/cancel','SslcommezController@cancel');
+        Route::any('/ipn','SslcommezController@ipn');
+        Route::get('error','SslcommerzController@error');
     });
 });
