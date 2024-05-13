@@ -40,7 +40,7 @@ class CourseController extends Controller
         $productDetails = Course::with('brand','category','attributePrice','attribute','images')->where('status',1)->find($id);
         $groupProduct = array();
          if (!empty($productDetails['group_code'])) {
-           $groupProduct = Course::select('id','product_image','url','id','slug')->where('id','!=',$id)->where(['group_code'=>$productDetails['group_code'],'status'=>1])->get()->toArray();
+           $groupProduct = Course::select('id','image','url','id','slug')->where('id','!=',$id)->where(['group_code'=>$productDetails['group_code'],'status'=>1])->get()->toArray();
          }
         return view('front.courses.details')->with(['productDetails'=>$productDetails,'groupProduct'=>$groupProduct]);
     }
